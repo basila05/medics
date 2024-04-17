@@ -55,7 +55,7 @@ class _MedicinePageState extends State<MedicinePage> {
             children: [
               Container(
                 height: height*1,
-                width: width*0.63,
+                width: width*0.57,
                 child: GridView.builder(
                   itemCount: medicine.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -63,7 +63,7 @@ class _MedicinePageState extends State<MedicinePage> {
                     childAspectRatio: 1,
                     crossAxisSpacing: height*0.07,
                     mainAxisSpacing: width*0.03,
-                    mainAxisExtent: width*0.22,
+                    mainAxisExtent: width*0.2,
                   ),
                   itemBuilder: (context, index) {
                     return Container(
@@ -72,7 +72,7 @@ class _MedicinePageState extends State<MedicinePage> {
                         borderRadius: BorderRadius.circular(width*0.02),
                         border: Border.all(
                             width: width*0.001,
-                            color: ColorPage.thirdcolor
+                            color: ColorPage.fourthcolor
                         ),
                         boxShadow:[
                           BoxShadow(
@@ -87,17 +87,25 @@ class _MedicinePageState extends State<MedicinePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            height: height*0.3,
-                            width: width*0.15,
+                            height: height*0.27,
+                            width: width*0.13,
                             decoration: BoxDecoration(
+                                boxShadow:[
+                                  BoxShadow(
+                                    color: ColorPage.thirdcolor.withOpacity(0.10),
+                                    blurRadius: 4,
+                                    spreadRadius: 2,
+                                    offset:Offset(0, 4),
+                                  )
+                                ] ,
                               color: ColorPage.secondarycolor,
                                 borderRadius: BorderRadius.circular(width*0.01),
                                 image: DecorationImage(image: AssetImage(medicine[index]["image"]),fit: BoxFit.fill)
                             ),
                           ),
                           Container(
-                            height: height*0.078,
-                            width: width*0.17,
+                            height: height*0.073,
+                            width: width*0.15,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

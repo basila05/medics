@@ -80,7 +80,7 @@ class _DoctorPageState extends State<DoctorPage> {
                             borderRadius: BorderRadius.circular(width*0.02),
                             border: Border.all(
                               width: width*0.001,
-                                color: ColorPage.thirdcolor
+                                color: ColorPage.fourthcolor
                             ),
                           boxShadow:[
                             BoxShadow(
@@ -98,6 +98,14 @@ class _DoctorPageState extends State<DoctorPage> {
                               height: height*0.3,
                               width: width*0.15,
                               decoration: BoxDecoration(
+                                  boxShadow:[
+                                    BoxShadow(
+                                      color: ColorPage.thirdcolor.withOpacity(0.10),
+                                      blurRadius: 3,
+                                      spreadRadius: 2,
+                                      offset:Offset(0, 4),
+                                    )
+                                  ] ,
                                   borderRadius: BorderRadius.circular(width*0.01),
                                 image: DecorationImage(image: AssetImage(doctor[index]["image"]),fit: BoxFit.fill)
                               ),

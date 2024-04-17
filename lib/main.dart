@@ -35,9 +35,9 @@ class Medics extends StatelessWidget {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              textTheme: GoogleFonts.interTextTheme()
+              textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:HomePage()
+          home:DoctorPage()
       ),);
   }
 }
