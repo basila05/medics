@@ -61,7 +61,7 @@ class _DoctorPageState extends State<DoctorPage> {
             children: [
               Container(
                 height: height*1,
-                width: width*0.63,
+                width: width*0.6,
                 child: GridView.builder(
                   itemCount: doctor.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -69,7 +69,7 @@ class _DoctorPageState extends State<DoctorPage> {
                     childAspectRatio: 1,
                     crossAxisSpacing: height*0.07,
                     mainAxisSpacing: width*0.03,
-                    mainAxisExtent: width*0.22,
+                    mainAxisExtent: width*0.23,
                     ),
                     itemBuilder: (context, index) {
                       return Container(
