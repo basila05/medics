@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medics/banners.dart';
 import 'package:medics/colorpage.dart';
 import 'package:medics/doctors.dart';
 import 'package:medics/medicines.dart';
@@ -22,9 +23,7 @@ class _HomePageState extends State<HomePage> {
     ),
     DoctorPage(),
     MedicinePage(),
-    Center(
-      child: Text('Settings'),
-    ),
+    BannerPage(),
   ];
 
   int selectedIndex = 0;
