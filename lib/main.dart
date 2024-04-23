@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medics/banners.dart';
 import 'package:medics/doctors.dart';
 import 'package:medics/firebase_options.dart';
 import 'package:medics/login.dart';
@@ -38,7 +37,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:LoginPage()
+          home:SplashScreen()
       ),);
   }
 }
