@@ -36,4 +36,6 @@ class ImageIcons {
   static const tab2 = "assets/images/Image1.png";
   static const tab3 = "assets/images/Image2.png";
   static const tab4 = "assets/images/Image3.png";
+  static const eye = "assets/images/eye.svg";
+  static const eyeoff = "assets/images/eyeoff.svg";
 }
