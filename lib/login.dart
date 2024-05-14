@@ -249,8 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           ),
                                           child: toggle?Center(
-                                            child: Text("Register",style: TextStyle(
-                                              fontSize: width*0.012,
+                                            child: Text("Register",style: TextStyle(fontSize: width*0.012,
                                               fontWeight: FontWeight.w500,
                                               color: ColorPage.primarycolor,
                                             ),),

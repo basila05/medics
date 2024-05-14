@@ -31,6 +31,7 @@ class _MedicinePageState extends State<MedicinePage> {
     }
   }
   bool toggle = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

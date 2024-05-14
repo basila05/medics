@@ -30,33 +30,6 @@ class _DoctorPageState extends State<DoctorPage> {
       });
     }
   }
-  List doctor=[
-    {
-      "image": ImageIcons.marcus,
-      "name": "Dr. Marcus Horizon",
-      "text":"Chardiologist",
-    },
-    {
-      "image": ImageIcons.maria,
-      "name": "Dr. Maria Elena",
-      "text":"Psychologist",
-    },
-    {
-      "image": ImageIcons.stefi,
-      "name": "Dr. Stefi Jessi",
-      "text":"Orthopedist",
-    },
-    {
-      "image": ImageIcons.gerty,
-      "name": "Dr. Gerty Cori",
-      "text":"Orthopedist",
-    },
-    {
-      "image": ImageIcons.diandra,
-      "name": "Dr. Diandra",
-      "text":"Orthopedist",
-    },
-  ];
   bool toggle =false;
   @override
   Widget build(BuildContext context) {
