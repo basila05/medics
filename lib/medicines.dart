@@ -283,6 +283,24 @@ class _MedicinePageState extends State<MedicinePage> {
                                   ),
                                 ),
                               ),
+                              SizedBox(height: height*0.04,),
+                              Container(
+                                height: height*0.06,
+                                width: width*0.17,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradientPainter(
+                                    colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                                  ),
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: Center(
+                                  child: Text("Add",style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorPage.secondarycolor,
+                                      fontSize: width*0.012
+                                  ),),
+                                ),
+                              )
                             ],
                           )
                         ],
