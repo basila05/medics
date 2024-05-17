@@ -8,7 +8,7 @@ import 'package:gradients/gradients.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medics/colorpage.dart';
 
-import 'main.dart';
+import '../../main.dart';
 
 class DoctorPage extends StatefulWidget {
   const DoctorPage({super.key});

@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
-import 'package:medics/homepage.dart';
+import 'package:medics/features/screen/homepage.dart';
 
-import 'colorpage.dart';
-import 'main.dart';
+import '../../colorpage.dart';
+import '../../main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

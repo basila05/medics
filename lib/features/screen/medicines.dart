@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'colorpage.dart';
-import 'main.dart';
+import '../../colorpage.dart';
+import '../../main.dart';
 
 class MedicinePage extends StatefulWidget {
   const MedicinePage({super.key});

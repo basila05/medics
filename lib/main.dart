@@ -2,13 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medics/doctors.dart';
+import 'package:medics/features/screen/doctors.dart';
 import 'package:medics/firebase_options.dart';
-import 'package:medics/login.dart';
-import 'package:medics/medicines.dart';
-import 'package:medics/splashcreen.dart';
+import 'package:medics/features/screen/login.dart';
+import 'package:medics/features/screen/medicines.dart';
+import 'package:medics/features/screen/splashcreen.dart';
 
-import 'homepage.dart';
+import 'features/screen/homepage.dart';
 
 var height;
 var width;
@@ -37,7 +37,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:MedicinePage()
+          home:HomePage()
       ),);
   }
 }

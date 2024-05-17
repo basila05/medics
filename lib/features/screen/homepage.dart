@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
-import 'package:medics/banners.dart';
+import 'package:medics/features/screen/banners.dart';
 import 'package:medics/colorpage.dart';
-import 'package:medics/doctors.dart';
-import 'package:medics/medicines.dart';
+import 'package:medics/features/screen/doctors.dart';
+import 'package:medics/features/screen/medicines.dart';
+import 'package:medics/features/screen/userPage.dart';
 import 'package:side_navigation/side_navigation.dart';
 
-import 'main.dart';
+import '../../main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -187,7 +188,28 @@ class _HomePageState extends State<HomePage> {
                                       )
                                     ],
                                   ),
-                                ):SizedBox(),
+                                ):InkWell(
+                                   onTap: (){
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => UsersPage(),));
+                                     },
+                                     child: Container(
+                              height: height*0.07,
+                              width: width*0.2,
+                              decoration: BoxDecoration(
+                                  color: ColorPage.color3,
+                                  border: Border.all(
+                                      color: ColorPage.color1,
+                                      width: width*0.001
+                                  ),
+                                  borderRadius: BorderRadius.circular(width*0.014)
+                              ),
+                              child: Center(child: Text("User Details",style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: ColorPage.color5,
+                                  fontSize: width*0.012
+                              ),)),
+                            ),
+                          ),
                         ],
                       ),
                     )
