@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medics/colorpage.dart';
+import 'package:medics/features/screen/doctorPage2.dart';
 
 import '../../main.dart';
 
@@ -22,14 +25,28 @@ class _DoctorPageState extends State<DoctorPage> {
   TextEditingController nameController = TextEditingController();
   final formKey=GlobalKey<FormState>();
   var file;
+  String imgUrl = '';
+
   pickFile(ImageSource) async {
-    final imgFile= await ImagePicker.platform.getImage(source: ImageSource);
+    final imgFile= await ImagePicker.platform.getImageFromSource(source: ImageSource);
     if(mounted){
       setState(() {
         file=File(imgFile!.path);
       });
+      // uploadFile(file);
     }
   }
+  // uploadFile(File file) async{
+  //   var uploadTask = await FirebaseStorage.instance
+  //       .ref("upload").child(DateTime.now().toString())
+  //       .putFile(file, SettableMetadata(contentType: "images/jpeg"));
+  //   var getUrl = await uploadTask.ref.getDownloadURL();
+  //   imgUrl = getUrl;
+  //   setState(() {
+  //
+  //   });
+  //   print(getUrl);
+  // }
   bool toggle =false;
   @override
   Widget build(BuildContext context) {
@@ -149,32 +166,48 @@ class _DoctorPageState extends State<DoctorPage> {
                      toggle? Column(
                        children: [
                          SizedBox(height: height*0.1,),
-                         Container(
-                           height: height*0.08,
-                           width: width*0.25,
-                           decoration: BoxDecoration(
-                               color: ColorPage.color3,
-                               border: Border.all(
-                                   color: ColorPage.color1,
-                                   width: width*0.001
-                               ),
-                               borderRadius: BorderRadius.circular(width*0.014)
+                         InkWell(
+                           onTap: () {
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(),));
+                           },
+                           child: Container(
+                             height: height*0.08,
+                             width: width*0.25,
+                             decoration: BoxDecoration(
+                                 color: ColorPage.color3,
+                                 border: Border.all(
+                                     color: ColorPage.color1,
+                                     width: width*0.001
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.014)
+                             ),
+                             child: Center(child: Text("Doctors with Details",style: TextStyle(
+                                 fontWeight: FontWeight.w600,
+                                 color: ColorPage.color5,
+                                 fontSize: width*0.012
+                             ),)),
                            ),
-                           child: Center(child: Text("Doctors with Details",style: TextStyle(
-                               fontWeight: FontWeight.w600,
-                               color: ColorPage.color5,
-                               fontSize: width*0.012
-                           ),)),
                          ),
                        ],
                      ):
                     Column(
                       children: [
-                        file == null? InkWell(
-                          onTap: () {
-                            pickFile(ImageSource.gallery);
-                          },
-                          child: Container(
+                        file != null? Container(
+                          height: height*0.2,
+                          width: width*0.1,
+                          decoration: BoxDecoration(
+                              boxShadow:[
+                                BoxShadow(
+                                  color: ColorPage.thirdcolor.withOpacity(0.10),
+                                  blurRadius: 3,
+                                  spreadRadius: 2,
+                                  offset:Offset(0, 4),
+                                )
+                              ] ,
+                              borderRadius: BorderRadius.circular(width*0.01),
+                              image: DecorationImage(image: FileImage(file))
+                          ),
+                        ): Container(
                             height: height*0.2,
                             width: width*0.1,
                             decoration: BoxDecoration(
@@ -194,24 +227,12 @@ class _DoctorPageState extends State<DoctorPage> {
                               ),
                               borderRadius: BorderRadius.circular(width*0.01),
                             ),
-                            child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,),
+                            child: InkWell(
+                                onTap: () {
+                                  pickFile(ImageSource.gallery);
+                                },
+                                child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
                           ),
-                        ): Container(
-                          height: height*0.2,
-                          width: width*0.1,
-                          decoration: BoxDecoration(
-                              boxShadow:[
-                                BoxShadow(
-                                  color: ColorPage.thirdcolor.withOpacity(0.10),
-                                  blurRadius: 3,
-                                  spreadRadius: 2,
-                                  offset:Offset(0, 4),
-                                )
-                              ] ,
-                              borderRadius: BorderRadius.circular(width*0.01),
-                              image: DecorationImage(image: FileImage(file))
-                          ),
-                        ),
                         SizedBox(height: height*0.05,),
                         Container(
                           height: height*0.06,
