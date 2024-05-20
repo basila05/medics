@@ -84,10 +84,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                           ),
                         ),
                       );
-
                   },
-
-
                 ),
               ),
                 error: (error, stackTrace) {
