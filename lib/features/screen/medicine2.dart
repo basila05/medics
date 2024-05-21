@@ -8,14 +8,14 @@ import '../../main.dart';
 import '../controllers/user_controller.dart';
 
 
-class DoctorDetails extends ConsumerStatefulWidget {
-  const DoctorDetails({super.key});
+class MedicineDetails extends ConsumerStatefulWidget {
+  const MedicineDetails({super.key});
 
   @override
-  ConsumerState createState() => _DoctorDetailsState();
+  ConsumerState createState() => _MedicineDetailsState();
 }
 
-class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
+class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ref.watch(StreamDocProvider).when(data: (data) => Container(
+              ref.watch(StreamMedProvider).when(data: (data) => Container(
                 width: width*0.7,
                 height: height*1,
                 child: GridView.builder(
@@ -80,15 +80,15 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                                 ),
                                 Row(
                                   children: [
-                                    Text(data[index].spcl.toString(),style: TextStyle(
-                                        // color: ColorPage.sixthcolor,
+                                    Text(data[index].ml.toString(),style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
                                   ],
                                 ),
                                 Row(
                                   children: [
-                                    Text(data[index].location.toString(),style: TextStyle(
-                                        // color: ColorPage.sixthcolor,
+                                    Text(data[index].rate.toString(),style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
                                   ],
                                 ),
