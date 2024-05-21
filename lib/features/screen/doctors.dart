@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:ui_web';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,19 +25,20 @@ class DoctorPage extends StatefulWidget {
 class _DoctorPageState extends State<DoctorPage> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
   final formKey=GlobalKey<FormState>();
-  var file;
-  String imgUrl = '';
-
-  pickFile(ImageSource) async {
-    final imgFile= await ImagePicker.platform.getImageFromSource(source: ImageSource);
-    if(mounted){
-      setState(() {
-        file=File(imgFile!.path);
-      });
-      // uploadFile(file);
-    }
-  }
+  // var file;
+  // String imgUrl = '';
+  //
+  // pickFile(ImageSource) async {
+  //   final imgFile= await ImagePicker.platform.getImageFromSource(source: ImageSource);
+  //   if(mounted){
+  //     setState(() {
+  //       file=File(imgFile!.path);
+  //     });
+  //     // uploadFile(file);
+  //   }
+  // }
   // uploadFile(File file) async{
   //   var uploadTask = await FirebaseStorage.instance
   //       .ref("upload").child(DateTime.now().toString())
@@ -47,6 +50,42 @@ class _DoctorPageState extends State<DoctorPage> {
   //   });
   //   print(getUrl);
   // }
+  PlatformFile? pickFile;
+  UploadTask? uploadTask;
+  String? urlDownlod;
+  Future selectFileToMessage(String name) async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+
+    pickFile = result.files.first;
+
+    // String? ext = pickFile?.name?.split('.')?.last;
+    final fileBytes = result.files.first.bytes;
+
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Uploading...")));
+    uploadFileToFireBase(name, fileBytes);
+
+    setState(() {});
+  }
+
+  Future uploadFileToFireBase(String name, fileBytes) async {
+    uploadTask = FirebaseStorage.instance
+        .ref('doctor/${DateTime.now().toString()}-$name')
+        .putData(fileBytes,SettableMetadata(
+        contentType: 'image/jpeg'
+    ));
+    final snapshot = await uploadTask?.whenComplete(() {});
+    urlDownlod = (await snapshot?.ref?.getDownloadURL())!;
+
+    // ignore: use_build_context_synchronously
+    // showUploadMessage(context, '$name Uploaded Successfully...');
+    await Future.delayed(const Duration(seconds: 2));
+    // ignore: use_build_context_synchronously
+    // ScaffoldMessenger.of(context).clearSnackBars();
+    setState(() {});
+  }
   bool toggle =false;
   @override
   Widget build(BuildContext context) {
@@ -81,7 +120,7 @@ class _DoctorPageState extends State<DoctorPage> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(height: height*0.12,),
+                          SizedBox(height: height*0.07,),
                           Stack(
                             children: [
                               InkWell(
@@ -162,10 +201,10 @@ class _DoctorPageState extends State<DoctorPage> {
                                 ),)
                             ],
                           ),
-                          SizedBox(height: height*0.1,),
+                          SizedBox(height: height*0.09,),
                      toggle? Column(
                        children: [
-                         SizedBox(height: height*0.1,),
+                         SizedBox(height: height*0.08,),
                          InkWell(
                            onTap: () {
                              Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(),));
@@ -192,10 +231,11 @@ class _DoctorPageState extends State<DoctorPage> {
                      ):
                     Column(
                       children: [
-                        file != null? Container(
+                        urlDownlod != null? Container(
                           height: height*0.2,
                           width: width*0.1,
                           decoration: BoxDecoration(
+                            border: Border.all(width: width*0.001),
                               boxShadow:[
                                 BoxShadow(
                                   color: ColorPage.thirdcolor.withOpacity(0.10),
@@ -205,7 +245,7 @@ class _DoctorPageState extends State<DoctorPage> {
                                 )
                               ] ,
                               borderRadius: BorderRadius.circular(width*0.01),
-                              image: DecorationImage(image: FileImage(file))
+                              image: DecorationImage(image: NetworkImage(urlDownlod!))
                           ),
                         ): Container(
                             height: height*0.2,
@@ -229,7 +269,7 @@ class _DoctorPageState extends State<DoctorPage> {
                             ),
                             child: InkWell(
                                 onTap: () {
-                                  pickFile(ImageSource.gallery);
+                                  selectFileToMessage("medics");
                                 },
                                 child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
                           ),
@@ -287,6 +327,41 @@ class _DoctorPageState extends State<DoctorPage> {
                                 child: Icon(CupertinoIcons.list_bullet_indent,color: ColorPage.primarycolor,),
                               ),
                               labelText: "Specialist",
+                              labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: ColorPage.primarycolor,
+                                  ),
+                                  borderRadius: BorderRadius.circular(width*0.01)
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: ColorPage.primarycolor
+                                ),
+                                borderRadius: BorderRadius.circular(width*0.01),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: height*0.03,),
+                        Container(
+                          height: height*0.06,
+                          width: width*0.23,
+                          decoration: BoxDecoration(
+                            color: ColorPage.color3,
+                            borderRadius: BorderRadius.circular(width*0.01),
+                          ),
+                          child: TextFormField(
+                            controller: locationController,
+                            textInputAction: TextInputAction.done,
+                            keyboardType: TextInputType.text,
+                            style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                            decoration: InputDecoration(
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.all(width*0.005),
+                                child: Icon(CupertinoIcons.list_bullet_indent,color: ColorPage.primarycolor,),
+                              ),
+                              labelText: "Location",
                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(

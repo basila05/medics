@@ -18,6 +18,7 @@ class MedicinePage extends StatefulWidget {
 class _MedicinePageState extends State<MedicinePage> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController rateController = TextEditingController();
   final formKey=GlobalKey<FormState>();
   var file;
   pickFile(ImageSource) async {
@@ -63,7 +64,7 @@ class _MedicinePageState extends State<MedicinePage> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(height: height*0.12,),
+                          SizedBox(height: height*0.07,),
                           Stack(
                             children: [
                               InkWell(
@@ -144,10 +145,10 @@ class _MedicinePageState extends State<MedicinePage> {
                                 ),)
                             ],
                           ),
-                          SizedBox(height: height*0.1,),
+                          SizedBox(height: height*0.09,),
                           toggle? Column(
                             children: [
-                              SizedBox(height: height*0.1,),
+                              SizedBox(height: height*0.08,),
                               Container(
                                 height: height*0.08,
                                 width: width*0.25,
@@ -257,7 +258,7 @@ class _MedicinePageState extends State<MedicinePage> {
                                 child: TextFormField(
                                   controller: categoryController,
                                   textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.text,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -265,6 +266,41 @@ class _MedicinePageState extends State<MedicinePage> {
                                       child: Icon(Icons.more_horiz,color: ColorPage.primarycolor,),
                                     ),
                                     labelText: "ml/pcs",
+                                    labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: ColorPage.primarycolor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(width*0.01)
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorPage.primarycolor
+                                      ),
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height*0.03,),
+                              Container(
+                                height: height*0.06,
+                                width: width*0.23,
+                                decoration: BoxDecoration(
+                                  color: ColorPage.color3,
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: TextFormField(
+                                  controller: rateController,
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.emailAddress,
+                                  style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                                  decoration: InputDecoration(
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(width*0.005),
+                                      child: Icon(Icons.currency_rupee,color: ColorPage.primarycolor,),
+                                    ),
+                                    labelText: "Rate",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
