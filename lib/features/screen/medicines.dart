@@ -1,36 +1,73 @@
-import 'dart:io';
-
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:medics/features/controllers/user_controller.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 
-class MedicinePage extends StatefulWidget {
+class MedicinePage extends ConsumerStatefulWidget {
   const MedicinePage({super.key});
 
   @override
-  State<MedicinePage> createState() => _MedicinePageState();
+  ConsumerState createState() => _MedicinePageState();
 }
 
-class _MedicinePageState extends State<MedicinePage> {
+class _MedicinePageState extends ConsumerState<MedicinePage> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController rateController = TextEditingController();
+  TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
-  var file;
-  pickFile(ImageSource) async {
-    final imgFile= await ImagePicker.platform.getImage(source: ImageSource);
-    if(mounted){
-      setState(() {
-        file=File(imgFile!.path);
-      });
-    }
-  }
   bool toggle = false;
 
+  PlatformFile? pickFile;
+  UploadTask? uploadTask;
+  String? urlDownlod;
+
+  Future selectFileToMessage(String name) async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+
+    pickFile = result.files.first;
+
+    // String? ext = pickFile?.name?.split('.')?.last;
+    final fileBytes = result.files.first.bytes;
+
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Uploading...")));
+    uploadFileToFireBase(name, fileBytes);
+
+    setState(() {});
+  }
+
+  Future uploadFileToFireBase(String name, fileBytes) async {
+    uploadTask = FirebaseStorage.instance
+        .ref('medicine/${DateTime.now().toString()}-$name')
+        .putData(fileBytes,SettableMetadata(
+        contentType: 'image/jpeg'
+    ));
+    final snapshot = await uploadTask?.whenComplete(() {});
+    urlDownlod = (await snapshot?.ref?.getDownloadURL())!;
+
+    // ignore: use_build_context_synchronously
+    // showUploadMessage(context, '$name Uploaded Successfully...');
+    await Future.delayed(const Duration(seconds: 2));
+    // ignore: use_build_context_synchronously
+    // ScaffoldMessenger.of(context).clearSnackBars();
+    setState(() {});
+  }
+  medDetails(){
+    ref.read(MedicineControllerProvider).addMedicineData(
+        nameController.text,
+        rateController.text,
+        categoryController.text,
+        idController.text);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,33 +207,7 @@ class _MedicinePageState extends State<MedicinePage> {
                           ):
                           Column(
                             children: [
-                              file == null? InkWell(
-                                onTap: () {
-                                  pickFile(ImageSource.gallery);
-                                },
-                                child: Container(
-                                  height: height*0.2,
-                                  width: width*0.1,
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradientPainter(
-                                      colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
-                                    ),
-                                    boxShadow:[
-                                      BoxShadow(
-                                        color: ColorPage.thirdcolor.withOpacity(0.10),
-                                        blurRadius: 3,
-                                        spreadRadius: 2,
-                                        offset:Offset(0, 4),
-                                      )
-                                    ] ,
-                                    border: Border.all(
-                                        color: ColorPage.primarycolor
-                                    ),
-                                    borderRadius: BorderRadius.circular(width*0.01),
-                                  ),
-                                  child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,),
-                                ),
-                              ): Container(
+                              urlDownlod != null? Container(
                                 height: height*0.2,
                                 width: width*0.1,
                                 decoration: BoxDecoration(
@@ -209,8 +220,33 @@ class _MedicinePageState extends State<MedicinePage> {
                                       )
                                     ] ,
                                     borderRadius: BorderRadius.circular(width*0.01),
-                                    image: DecorationImage(image: FileImage(file))
+                                    image: DecorationImage(image: NetworkImage(urlDownlod!))
                                 ),
+                              ):Container(
+                                height: height*0.2,
+                                width: width*0.1,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradientPainter(
+                                    colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                                  ),
+                                  boxShadow:[
+                                    BoxShadow(
+                                      color: ColorPage.thirdcolor.withOpacity(0.10),
+                                      blurRadius: 3,
+                                      spreadRadius: 2,
+                                      offset:Offset(0, 4),
+                                    )
+                                  ] ,
+                                  border: Border.all(
+                                      color: ColorPage.primarycolor
+                                  ),
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: InkWell(
+                                    onTap: () {
+                                      selectFileToMessage("medicine");
+                                    },
+                                    child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
                               ),
                               SizedBox(height: height*0.05,),
                               Container(
@@ -318,21 +354,26 @@ class _MedicinePageState extends State<MedicinePage> {
                                 ),
                               ),
                               SizedBox(height: height*0.04,),
-                              Container(
-                                height: height*0.06,
-                                width: width*0.17,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradientPainter(
-                                    colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                              InkWell(
+                                onTap: () {
+                                  medDetails();
+                                },
+                                child: Container(
+                                  height: height*0.06,
+                                  width: width*0.17,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradientPainter(
+                                      colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                                    ),
+                                    borderRadius: BorderRadius.circular(width*0.01),
                                   ),
-                                  borderRadius: BorderRadius.circular(width*0.01),
-                                ),
-                                child: Center(
-                                  child: Text("Add",style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: ColorPage.secondarycolor,
-                                      fontSize: width*0.012
-                                  ),),
+                                  child: Center(
+                                    child: Text("Add",style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorPage.secondarycolor,
+                                        fontSize: width*0.012
+                                    ),),
+                                  ),
                                 ),
                               )
                             ],

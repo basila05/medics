@@ -39,7 +39,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:HomePage()
+          home:MedicinePage()
       ),);
   }
 }

@@ -6,53 +6,35 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medics/core/constants/colorpage.dart';
+import 'package:medics/features/controllers/user_controller.dart';
 import 'package:medics/features/screen/doctorPage2.dart';
 
 import '../../main.dart';
 
-class DoctorPage extends StatefulWidget {
+class DoctorPage extends ConsumerStatefulWidget {
   const DoctorPage({super.key});
 
   @override
-  State<DoctorPage> createState() => _DoctorPageState();
+  ConsumerState createState() => _DoctorPageState();
 }
 
-class _DoctorPageState extends State<DoctorPage> {
+class _DoctorPageState extends ConsumerState<DoctorPage> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController locationController = TextEditingController();
+  TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
-  // var file;
-  // String imgUrl = '';
-  //
-  // pickFile(ImageSource) async {
-  //   final imgFile= await ImagePicker.platform.getImageFromSource(source: ImageSource);
-  //   if(mounted){
-  //     setState(() {
-  //       file=File(imgFile!.path);
-  //     });
-  //     // uploadFile(file);
-  //   }
-  // }
-  // uploadFile(File file) async{
-  //   var uploadTask = await FirebaseStorage.instance
-  //       .ref("upload").child(DateTime.now().toString())
-  //       .putFile(file, SettableMetadata(contentType: "images/jpeg"));
-  //   var getUrl = await uploadTask.ref.getDownloadURL();
-  //   imgUrl = getUrl;
-  //   setState(() {
-  //
-  //   });
-  //   print(getUrl);
-  // }
+
   PlatformFile? pickFile;
   UploadTask? uploadTask;
   String? urlDownlod;
+
   Future selectFileToMessage(String name) async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
@@ -87,6 +69,13 @@ class _DoctorPageState extends State<DoctorPage> {
     setState(() {});
   }
   bool toggle =false;
+  docDetails(){
+    ref.read(DoctorControllerProvider).addDoctorData(
+      nameController.text,
+      categoryController.text,
+      locationController.text,
+      idController.text);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -269,7 +258,7 @@ class _DoctorPageState extends State<DoctorPage> {
                             ),
                             child: InkWell(
                                 onTap: () {
-                                  selectFileToMessage("medics");
+                                  selectFileToMessage("doctors");
                                 },
                                 child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
                           ),
@@ -379,21 +368,26 @@ class _DoctorPageState extends State<DoctorPage> {
                           ),
                         ),
                         SizedBox(height: height*0.04,),
-                        Container(
-                          height: height*0.06,
-                          width: width*0.17,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradientPainter(
-                              colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                        InkWell(
+                          onTap: () {
+                            docDetails();
+                          },
+                          child: Container(
+                            height: height*0.06,
+                            width: width*0.17,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradientPainter(
+                                colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                              ),
+                              borderRadius: BorderRadius.circular(width*0.01),
                             ),
-                            borderRadius: BorderRadius.circular(width*0.01),
-                          ),
-                          child: Center(
-                            child: Text("Add",style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: ColorPage.secondarycolor,
-                                fontSize: width*0.012
-                            ),),
+                            child: Center(
+                              child: Text("Add",style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: ColorPage.secondarycolor,
+                                  fontSize: width*0.012
+                              ),),
+                            ),
                           ),
                         )
                       ],
@@ -411,3 +405,4 @@ class _DoctorPageState extends State<DoctorPage> {
     );
   }
 }
+

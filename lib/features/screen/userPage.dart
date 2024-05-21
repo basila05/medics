@@ -71,13 +71,13 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                               Row(
                                 children: [
                                   Text("Email : ",style: TextStyle(fontWeight: FontWeight.w600),),
-                                  Text(data[index].spcl.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
+                                  Text(data[index].ml.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
                                 ],
                               ),
                               Row(
                                 children: [
                                   Text("Password : ",style: TextStyle(fontWeight: FontWeight.w600),),
-                                  Text(data[index].location.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
+                                  Text(data[index].rate.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
                                 ],
                               ),
                             ],
