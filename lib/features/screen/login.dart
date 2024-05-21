@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/screen/homepage.dart';
 
-import '../../colorpage.dart';
+import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 
 class LoginPage extends StatefulWidget {

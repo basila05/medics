@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
-import 'package:medics/colorpage.dart';
+import 'package:medics/core/constants/colorpage.dart';
 import 'package:medics/features/screen/login.dart';
 import 'package:medics/main.dart';
 

@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../core/providers/firebase_providers.dart';
 import '../../models/usersmodel1.dart';
+import '../providers/firebase_providers.dart';
 
 final AddingRepositoryProvider = Provider((ref) => AddingRepository(firestore: ref.watch(fireStoreProvider)));
 

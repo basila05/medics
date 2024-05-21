@@ -2,12 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../colorpage.dart';
+import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 
 class MedicinePage extends StatefulWidget {

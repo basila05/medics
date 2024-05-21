@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:medics/colorpage.dart';
+import 'package:medics/core/constants/colorpage.dart';
 import 'package:medics/features/screen/doctorPage2.dart';
 
 import '../../main.dart';

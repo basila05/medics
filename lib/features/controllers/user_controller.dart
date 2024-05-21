@@ -4,13 +4,13 @@ import '../../models/usersmodel1.dart';
 
 
 final AddingControllerProvider = Provider((ref) => AddingController(addingRepository: ref.watch(AddingRepositoryProvider)));
-final StreamDataProvider = StreamProvider((ref) => ref.watch(AddingControllerProvider).streamUserData());
+final StreamDataProvider = StreamProvider((ref) => ref.watch(AddingControllerProvider).StreamUserData());
 
 class AddingController{
   final AddingRepository _addingRepository;
   AddingController({required AddingRepository addingRepository}): _addingRepository= addingRepository;
 
-  Stream streamUserData(){
+  Stream StreamUserData(){
     return _addingRepository.streamData();
   }
 

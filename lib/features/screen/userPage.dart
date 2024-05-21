@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
 
-import '../../colorpage.dart';
-import '../../core/controllers/user_controller.dart';
+import '../../core/constants/colorpage.dart';
 import '../../main.dart';
+import '../controllers/user_controller.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
   const UsersPage({super.key});
@@ -62,12 +62,12 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                            Row(
-                              children: [
-                                Text("Name : ",style: TextStyle(fontWeight: FontWeight.w600),),
-                                Text(data[index].name.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
-                              ],
-                            ),
+                            // Row(
+                            //   children: [
+                            //     Text("Name : ",style: TextStyle(fontWeight: FontWeight.w600),),
+                            //     Text(data[index].name.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
+                            //   ],
+                            // ),
                               Row(
                                 children: [
                                   Text("Email : ",style: TextStyle(fontWeight: FontWeight.w600),),

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/screen/banners.dart';
-import 'package:medics/colorpage.dart';
+import 'package:medics/core/constants/colorpage.dart';
 import 'package:medics/features/screen/doctors.dart';
 import 'package:medics/features/screen/medicines.dart';
 import 'package:medics/features/screen/userPage.dart';
