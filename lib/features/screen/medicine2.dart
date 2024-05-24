@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gradients/gradients.dart';
 
 import '../../core/constants/colorpage.dart';
@@ -9,7 +10,14 @@ import '../controllers/user_controller.dart';
 
 
 class MedicineDetails extends ConsumerStatefulWidget {
-  const MedicineDetails({super.key});
+  // final String name;
+  // final String rate;
+  // final String ml;
+  const MedicineDetails(
+      // this.name,
+      // this.rate,
+      // this.ml,
+      {super.key});
 
   @override
   ConsumerState createState() => _MedicineDetailsState();
@@ -66,35 +74,36 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                             color: Colors.white,
                           ),
                           Container(
-                            width: width*0.18,
+                            width: width*0.12,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(data[index].name.toString(),style: TextStyle(
-                                        fontSize: width*0.015,
-                                        fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(data[index].ml.toString(),style: TextStyle(
-                                      // color: ColorPage.sixthcolor,
-                                        fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(data[index].rate.toString(),style: TextStyle(
-                                      // color: ColorPage.sixthcolor,
-                                        fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
+                                Text(data[index].name.toString(),style: TextStyle(
+                                    fontSize: width*0.015,
+                                    fontWeight: FontWeight.w600),),
+                                Text("${data[index].ml.toString()}",style: TextStyle(
+                                  // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
+                                Text("${data[index].rate.toString()}",style: TextStyle(
+                                  // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
+                                Text("${data[index].off.toString()}",style: TextStyle(
+                                  // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
                               ],
                             ),
-                          ),
+                         ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(Icons.edit),
+                              InkWell(
+                                  onTap: () {
+                                    FirebaseFirestore.instance.collection("medicine").doc(data[index].id).delete();
+                                  },
+                                  child: Icon(Icons.delete)),
+                            ],
+                          )
                         ],
                       ),
                     );

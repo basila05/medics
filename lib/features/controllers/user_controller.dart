@@ -51,8 +51,8 @@ class MedicineController{
   final MedicineRepository _medicineRepository;
   MedicineController({required MedicineRepository medicineRepository}): _medicineRepository= medicineRepository;
 
-  addMedicineData(name, rate, ml, id){
-    _medicineRepository.add(name, rate, ml, id);
+  addMedicineData(name, rate, ml, off, id){
+    _medicineRepository.add(name, rate, ml, off, id);
   }
   Stream StreamMedicineData(){
     return _medicineRepository.streamMed();

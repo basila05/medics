@@ -68,11 +68,12 @@ class MedicineRepository{
 
   CollectionReference get _medicine => _firestore.collection("medicine");
 
-  add(name, ml, rate, id){
+  add(name, ml, rate, off, id){
     MedicineModel medData = MedicineModel(
         name: name,
         ml: ml,
         rate: rate,
+        off: off,
         id: ''
     );
 

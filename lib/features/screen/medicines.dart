@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/controllers/user_controller.dart';
+import 'package:medics/features/screen/medicine2.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
@@ -17,9 +18,10 @@ class MedicinePage extends ConsumerStatefulWidget {
 }
 
 class _MedicinePageState extends ConsumerState<MedicinePage> {
-  TextEditingController categoryController = TextEditingController();
+  TextEditingController mlController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController rateController = TextEditingController();
+  TextEditingController offController = TextEditingController();
   TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
   bool toggle = false;
@@ -64,8 +66,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
   medDetails(){
     ref.read(MedicineControllerProvider).addMedicineData(
         nameController.text,
-        rateController.text,
-        categoryController.text,
+        double.parse(rateController.text,),
+        double.parse(offController.text,),
+        double.parse( mlController.text,),
         idController.text);
   }
   @override
@@ -182,26 +185,31 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                 ),)
                             ],
                           ),
-                          SizedBox(height: height*0.09,),
+                          SizedBox(height: height*0.05,),
                           toggle? Column(
                             children: [
                               SizedBox(height: height*0.08,),
-                              Container(
-                                height: height*0.08,
-                                width: width*0.25,
-                                decoration: BoxDecoration(
-                                    color: ColorPage.color3,
-                                    border: Border.all(
-                                        color: ColorPage.color1,
-                                        width: width*0.001
-                                    ),
-                                    borderRadius: BorderRadius.circular(width*0.014)
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineDetails(),));
+                                },
+                                child: Container(
+                                  height: height*0.08,
+                                  width: width*0.25,
+                                  decoration: BoxDecoration(
+                                      color: ColorPage.color3,
+                                      border: Border.all(
+                                          color: ColorPage.color1,
+                                          width: width*0.001
+                                      ),
+                                      borderRadius: BorderRadius.circular(width*0.014)
+                                  ),
+                                  child: Center(child: Text("Medicines with Details",style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorPage.color5,
+                                      fontSize: width*0.012
+                                  ),)),
                                 ),
-                                child: Center(child: Text("Medicines with Details",style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: ColorPage.color5,
-                                    fontSize: width*0.012
-                                ),)),
                               ),
                             ],
                           ):
@@ -283,7 +291,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.03,),
+                              SizedBox(height: height*0.02,),
                               Container(
                                 height: height*0.06,
                                 width: width*0.23,
@@ -292,9 +300,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   borderRadius: BorderRadius.circular(width*0.01),
                                 ),
                                 child: TextFormField(
-                                  controller: categoryController,
+                                  controller: mlController,
                                   textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -318,7 +326,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.03,),
+                              SizedBox(height: height*0.02,),
                               Container(
                                 height: height*0.06,
                                 width: width*0.23,
@@ -329,7 +337,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                 child: TextFormField(
                                   controller: rateController,
                                   textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.number,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -353,7 +361,42 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.04,),
+                              SizedBox(height: height*0.02,),
+                              Container(
+                                height: height*0.06,
+                                width: width*0.23,
+                                decoration: BoxDecoration(
+                                  color: ColorPage.color3,
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: TextFormField(
+                                  controller: offController,
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.number,
+                                  style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                                  decoration: InputDecoration(
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(width*0.005),
+                                      child: Icon(Icons.currency_rupee,color: ColorPage.primarycolor,),
+                                    ),
+                                    labelText: "Off",
+                                    labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: ColorPage.primarycolor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(width*0.01)
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorPage.primarycolor
+                                      ),
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height*0.03,),
                               InkWell(
                                 onTap: () {
                                   medDetails();

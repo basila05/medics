@@ -1,13 +1,15 @@
 class MedicineModel {
   String name;
-  String ml;
-  String rate;
+  double ml;
+  double rate;
+  double off;
   String id;
 
   MedicineModel({
     required this.name,
     required this.ml,
     required this.rate,
+    required this.off,
     required this.id,
   });
 
@@ -15,6 +17,7 @@ class MedicineModel {
     return {
       'name': this.name,
       'ml': this.ml,
+      'off': this.off,
       'rate': this.rate,
       'id': this.id,
     };
@@ -22,24 +25,27 @@ class MedicineModel {
 
   factory MedicineModel.fromMap(Map<String, dynamic>map){
     return MedicineModel(
-      rate: map['location'] ?? "",
-      ml: map['ml'] ?? "",
-      name: map['rate'] ?? "",
+      rate: map['rate'].toDouble() ?? "",
+      ml: map['ml'].toDouble() ?? "",
+      off: map['off'].toDouble() ?? "",
+      name: map['name'] ?? "",
       id: map['id'] ?? "",
     );
   }
 
   MedicineModel copyWith({
     String? name,
-    String? location,
-    String? spcl,
+    double? rate,
+    double? off,
+    double? ml,
     String? id,
   }) {
     return MedicineModel(
       name: name ?? this.name,
       id: id ?? this.id,
-      ml: spcl ?? this.ml,
-      rate: location ?? this.rate,
+      ml: ml ?? this.ml,
+      off: off ?? this.off,
+      rate: rate ?? this.rate,
     );
   }
 }
