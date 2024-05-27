@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:medics/doctors.dart';
+// import 'package:medics/doctors.dart';
 import 'package:medics/firebase_options.dart';
-import 'package:medics/login.dart';
-import 'package:medics/medicines.dart';
-import 'package:medics/splashcreen.dart';
+// import 'package:medics/login.dart';
+// import 'package:medics/medicines.dart';
+// import 'package:medics/splashcreen.dart';
 
 import 'features/screen/splashcreen.dart';
-import 'homepage.dart';
+// import 'homepage.dart';
 
 var height;
 var width;
