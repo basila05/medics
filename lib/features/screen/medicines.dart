@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/controllers/user_controller.dart';
 import 'package:medics/features/screen/medicine2.dart';
+import 'package:medics/models/medicinemodel.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
@@ -65,11 +66,11 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
   }
   medDetails(){
     ref.read(MedicineControllerProvider).addMedicineData(
-        nameController.text,
-        double.parse(rateController.text,),
-        double.parse(offController.text,),
-        double.parse( mlController.text,),
-        idController.text);
+        MedicineModel(name: nameController.text,
+            ml: mlController.text,
+            rate: double.parse(rateController.text,),
+            off: double.parse(offController.text,),
+            id:  idController.text));
   }
   @override
   Widget build(BuildContext context) {
@@ -302,7 +303,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                 child: TextFormField(
                                   controller: mlController,
                                   textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.number,
+                                  keyboardType: TextInputType.text,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(

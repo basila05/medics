@@ -14,6 +14,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:medics/core/constants/colorpage.dart';
 import 'package:medics/features/controllers/user_controller.dart';
 import 'package:medics/features/screen/doctorPage2.dart';
+import 'package:medics/models/doctormodel.dart';
 
 import '../../main.dart';
 
@@ -27,7 +28,7 @@ class DoctorPage extends ConsumerStatefulWidget {
 class _DoctorPageState extends ConsumerState<DoctorPage> {
   TextEditingController categoryController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  TextEditingController locationController = TextEditingController();
+  TextEditingController expController = TextEditingController();
   TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
 
@@ -70,11 +71,11 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
   }
   bool toggle =false;
   docDetails(){
-    ref.read(DoctorControllerProvider).addDoctorData(
-      nameController.text,
-      categoryController.text,
-      locationController.text,
-      idController.text);
+    ref.read(DoctorControllerProvider).addDoctorData(DoctorModel(
+        name: nameController.text,
+        spcl: categoryController.text,
+        exp: expController.text,
+        id: idController.text));
   }
   @override
   Widget build(BuildContext context) {
@@ -307,7 +308,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                           ),
                           child: TextFormField(
                             controller: categoryController,
-                            textInputAction: TextInputAction.done,
+                            textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.text,
                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                             decoration: InputDecoration(
@@ -341,16 +342,16 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                             borderRadius: BorderRadius.circular(width*0.01),
                           ),
                           child: TextFormField(
-                            controller: locationController,
+                            controller: expController,
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.text,
                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                             decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: EdgeInsets.all(width*0.005),
-                                child: Icon(CupertinoIcons.list_bullet_indent,color: ColorPage.primarycolor,),
+                                child: Icon(CupertinoIcons.calendar,color: ColorPage.primarycolor,),
                               ),
-                              labelText: "Location",
+                              labelText: "Experience",
                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(

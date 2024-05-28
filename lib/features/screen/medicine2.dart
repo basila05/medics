@@ -81,7 +81,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                                 Text(data[index].name.toString(),style: TextStyle(
                                     fontSize: width*0.015,
                                     fontWeight: FontWeight.w600),),
-                                Text("${data[index].ml.toString()}",style: TextStyle(
+                                Text("${data[index].ml}",style: TextStyle(
                                   // color: ColorPage.sixthcolor,
                                     fontWeight: FontWeight.w600),),
                                 Text("${data[index].rate.toString()}",style: TextStyle(

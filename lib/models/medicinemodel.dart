@@ -1,6 +1,6 @@
 class MedicineModel {
   String name;
-  double ml;
+  String ml;
   double rate;
   double off;
   String id;
@@ -26,7 +26,7 @@ class MedicineModel {
   factory MedicineModel.fromMap(Map<String, dynamic>map){
     return MedicineModel(
       rate: map['rate'].toDouble() ?? "",
-      ml: map['ml'].toDouble() ?? "",
+      ml: map['ml'] ?? "",
       off: map['off'].toDouble() ?? "",
       name: map['name'] ?? "",
       id: map['id'] ?? "",
@@ -37,7 +37,7 @@ class MedicineModel {
     String? name,
     double? rate,
     double? off,
-    double? ml,
+    String? ml,
     String? id,
   }) {
     return MedicineModel(

@@ -87,7 +87,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                                 ),
                                 Row(
                                   children: [
-                                    Text(data[index].location.toString(),style: TextStyle(
+                                    Text(data[index].exp.toString(),style: TextStyle(
                                         // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
                                   ],

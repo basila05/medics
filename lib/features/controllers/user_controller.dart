@@ -27,8 +27,8 @@ class AddingController {
   final DoctorRepository _doctorRepository;
   DoctorController({required DoctorRepository doctorRepository}): _doctorRepository= doctorRepository;
 
-  addDoctorData(name, location, spcl, id){
-    _doctorRepository.add(name, location, spcl, id);
+  addDoctorData(DoctorModel docData){
+    _doctorRepository.add(docData);
   }
   Stream StreamDoctorData(){
     return _doctorRepository.streamDoc();
@@ -51,8 +51,8 @@ class MedicineController{
   final MedicineRepository _medicineRepository;
   MedicineController({required MedicineRepository medicineRepository}): _medicineRepository= medicineRepository;
 
-  addMedicineData(name, rate, ml, off, id){
-    _medicineRepository.add(name, rate, ml, off, id);
+  addMedicineData(MedicineModel medAdd){
+    _medicineRepository.add(medAdd);
   }
   Stream StreamMedicineData(){
     return _medicineRepository.streamMed();

@@ -1,13 +1,13 @@
 class DoctorModel {
   String name;
   String spcl;
-  String location;
+  String exp;
   String id;
 
   DoctorModel({
     required this.name,
     required this.spcl,
-    required this.location,
+    required this.exp,
     required this.id,
   });
 
@@ -15,14 +15,14 @@ class DoctorModel {
     return {
       'name': this.name,
       'spcl': this.spcl,
-      'location': this.location,
+      'exp': this.exp,
       'id': this.id,
     };
   }
 
   factory DoctorModel.fromMap(Map<String, dynamic>map){
     return DoctorModel(
-      location: map['location'] ?? "",
+      exp: map['exp'] ?? "",
       spcl: map['spcl'] ?? "",
       name: map['name'] ?? "",
       id: map['id'] ?? "",
@@ -31,7 +31,7 @@ class DoctorModel {
 
   DoctorModel copyWith({
     String? name,
-    String? location,
+    String? exp,
     String? spcl,
     String? id,
   }) {
@@ -39,7 +39,7 @@ class DoctorModel {
       name: name ?? this.name,
       id: id ?? this.id,
       spcl: spcl ?? this.spcl,
-      location: location ?? this.location,
+      exp: exp ?? this.exp,
     );
   }
 }

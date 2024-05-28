@@ -32,14 +32,7 @@ class AddingRepository {
 
   CollectionReference get _doctors => _firestore.collection("doctors");
 
-  add(name, spcl, location, id){
-    DoctorModel docData = DoctorModel(
-      name: name,
-      spcl: spcl,
-      location: location,
-      id: '',
-    );
-
+  add(DoctorModel docData){
     _doctors.add(docData.toMap()).then((value) {
       value.update(docData.copyWith(id: value.id).toMap());
     },);
@@ -68,15 +61,7 @@ class MedicineRepository{
 
   CollectionReference get _medicine => _firestore.collection("medicine");
 
-  add(name, ml, rate, off, id){
-    MedicineModel medData = MedicineModel(
-        name: name,
-        ml: ml,
-        rate: rate,
-        off: off,
-        id: ''
-    );
-
+  add(MedicineModel medData){
     _medicine.add(medData.toMap()).then((value) {
       value.update(medData.copyWith(id: value.id).toMap());
     },);
