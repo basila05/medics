@@ -1,4 +1,5 @@
 class MedicineModel {
+  String image;
   String name;
   String ml;
   double rate;
@@ -7,6 +8,7 @@ class MedicineModel {
 
   MedicineModel({
     required this.name,
+    required this.image,
     required this.ml,
     required this.rate,
     required this.off,
@@ -16,6 +18,7 @@ class MedicineModel {
   Map<String, dynamic> toMap() {
     return {
       'name': this.name,
+      'image': this.image,
       'ml': this.ml,
       'off': this.off,
       'rate': this.rate,
@@ -27,6 +30,7 @@ class MedicineModel {
     return MedicineModel(
       rate: map['rate'].toDouble() ?? "",
       ml: map['ml'] ?? "",
+      image: map['image'] ?? "",
       off: map['off'].toDouble() ?? "",
       name: map['name'] ?? "",
       id: map['id'] ?? "",
@@ -35,6 +39,7 @@ class MedicineModel {
 
   MedicineModel copyWith({
     String? name,
+    String? image,
     double? rate,
     double? off,
     String? ml,
@@ -42,6 +47,7 @@ class MedicineModel {
   }) {
     return MedicineModel(
       name: name ?? this.name,
+      image: image ?? this.image,
       id: id ?? this.id,
       ml: ml ?? this.ml,
       off: off ?? this.off,

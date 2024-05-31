@@ -29,7 +29,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
 
   PlatformFile? pickFile;
   UploadTask? uploadTask;
-  String? urlDownlod;
+  String? medImage;
 
   Future selectFileToMessage(String name) async {
     final result = await FilePicker.platform.pickFiles();
@@ -55,7 +55,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
         contentType: 'image/jpeg'
     ));
     final snapshot = await uploadTask?.whenComplete(() {});
-    urlDownlod = (await snapshot?.ref?.getDownloadURL())!;
+    medImage = (await snapshot?.ref?.getDownloadURL())!;
 
     // ignore: use_build_context_synchronously
     // showUploadMessage(context, '$name Uploaded Successfully...');
@@ -66,7 +66,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
   }
   medDetails(){
     ref.read(MedicineControllerProvider).addMedicineData(
-        MedicineModel(name: nameController.text,
+        MedicineModel(
+            image: medImage.toString(),
+            name: nameController.text,
             ml: mlController.text,
             rate: double.parse(rateController.text,),
             off: double.parse(offController.text,),
@@ -216,7 +218,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                           ):
                           Column(
                             children: [
-                              urlDownlod != null? Container(
+                              medImage != null? Container(
                                 height: height*0.2,
                                 width: width*0.1,
                                 decoration: BoxDecoration(
@@ -229,7 +231,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                       )
                                     ] ,
                                     borderRadius: BorderRadius.circular(width*0.01),
-                                    image: DecorationImage(image: NetworkImage(urlDownlod!))
+                                    image: DecorationImage(image: NetworkImage(medImage!))
                                 ),
                               ):Container(
                                 height: height*0.2,

@@ -95,6 +95,17 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                               ],
                             ),
                           ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(Icons.edit),
+                              InkWell(
+                                  onTap: () {
+                                    FirebaseFirestore.instance.collection("doctors").doc(data[index].id).delete();
+                                  },
+                                  child: Icon(Icons.delete)),
+                            ],
+                          )
                         ],
                       ),
                     );
