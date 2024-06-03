@@ -10,14 +10,7 @@ import '../controllers/user_controller.dart';
 
 
 class MedicineDetails extends ConsumerStatefulWidget {
-  // final String name;
-  // final String rate;
-  // final String ml;
-  const MedicineDetails(
-      // this.name,
-      // this.rate,
-      // this.ml,
-      {super.key});
+  const MedicineDetails({super.key});
 
   @override
   ConsumerState createState() => _MedicineDetailsState();

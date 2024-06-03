@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -388,7 +389,10 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                            child: TextFormField(
                              controller: consController,
                              textInputAction: TextInputAction.next,
-                             keyboardType: TextInputType.text,
+                             keyboardType: TextInputType.number,
+                             inputFormatters: [
+                               FilteringTextInputFormatter.digitsOnly,
+                             ],
                              style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                              decoration: InputDecoration(
                                prefixIcon: Padding(
@@ -423,7 +427,10 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                            child: TextFormField(
                              controller: adminController,
                              textInputAction: TextInputAction.next,
-                             keyboardType: TextInputType.text,
+                             keyboardType: TextInputType.number,
+                             inputFormatters: [
+                               FilteringTextInputFormatter.digitsOnly,
+                             ],
                              style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                              decoration: InputDecoration(
                                prefixIcon: Padding(
@@ -458,7 +465,10 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                            child: TextFormField(
                              controller: disController,
                              textInputAction: TextInputAction.done,
-                             keyboardType: TextInputType.text,
+                             keyboardType: TextInputType.number,
+                             inputFormatters: [
+                               FilteringTextInputFormatter.digitsOnly,
+                             ],
                              style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                              decoration: InputDecoration(
                                prefixIcon: Padding(

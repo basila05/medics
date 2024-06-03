@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/controllers/user_controller.dart';
@@ -343,6 +344,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   controller: rateController,
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -378,6 +382,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   controller: offController,
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
