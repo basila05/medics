@@ -72,6 +72,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                             width: width*0.1,
                             height: height*0.2,
                             color: Colors.white,
+                            child: Image(image:NetworkImage( data[index].image))
                           ),
                           Container(
                             width: width*0.12,

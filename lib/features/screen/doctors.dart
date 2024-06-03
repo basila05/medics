@@ -27,6 +27,9 @@ class DoctorPage extends ConsumerStatefulWidget {
 
 class _DoctorPageState extends ConsumerState<DoctorPage> {
   TextEditingController categoryController = TextEditingController();
+  TextEditingController consController = TextEditingController();
+  TextEditingController adminController = TextEditingController();
+  TextEditingController disController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController expController = TextEditingController();
   TextEditingController idController = TextEditingController();
@@ -34,7 +37,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
 
   PlatformFile? pickFile;
   UploadTask? uploadTask;
-  String? urlDownlod;
+  String? docImage;
 
   Future selectFileToMessage(String name) async {
     final result = await FilePicker.platform.pickFiles();
@@ -60,7 +63,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
         contentType: 'image/jpeg'
     ));
     final snapshot = await uploadTask?.whenComplete(() {});
-    urlDownlod = (await snapshot?.ref?.getDownloadURL())!;
+    docImage = (await snapshot?.ref?.getDownloadURL())!;
 
     // ignore: use_build_context_synchronously
     // showUploadMessage(context, '$name Uploaded Successfully...');
@@ -72,7 +75,11 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
   bool toggle =false;
   docDetails(){
     ref.read(DoctorControllerProvider).addDoctorData(DoctorModel(
+        image: docImage.toString(),
         name: nameController.text,
+        cons: double.parse(consController.text,),
+        admin: double.parse(adminController.text,),
+        dis: double.parse(disController.text,),
         spcl: categoryController.text,
         exp: expController.text,
         id: idController.text));
@@ -102,7 +109,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                 Stack(
                   children: [
                     Container(
-                      height: height*0.85,
+                      height: height*0.9,
                       width: width*0.65,
                       decoration: BoxDecoration(
                         color: ColorPage.fourthcolor,
@@ -110,7 +117,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(height: height*0.07,),
+                          SizedBox(height: height*0.035,),
                           Stack(
                             children: [
                               InkWell(
@@ -191,10 +198,10 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                                 ),)
                             ],
                           ),
-                          SizedBox(height: height*0.09,),
+                          SizedBox(height: height*0.03,),
                      toggle? Column(
                        children: [
-                         SizedBox(height: height*0.08,),
+                         SizedBox(height: height*0.1,),
                          InkWell(
                            onTap: () {
                              Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(),));
@@ -219,180 +226,287 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                          ),
                        ],
                      ):
-                    Column(
-                      children: [
-                        urlDownlod != null? Container(
-                          height: height*0.2,
-                          width: width*0.1,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: width*0.001),
-                              boxShadow:[
-                                BoxShadow(
-                                  color: ColorPage.thirdcolor.withOpacity(0.10),
-                                  blurRadius: 3,
-                                  spreadRadius: 2,
-                                  offset:Offset(0, 4),
-                                )
-                              ] ,
-                              borderRadius: BorderRadius.circular(width*0.01),
-                              image: DecorationImage(image: NetworkImage(urlDownlod!))
-                          ),
-                        ): Container(
-                            height: height*0.2,
-                            width: width*0.1,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradientPainter(
-                                colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
-                              ),
-                              boxShadow:[
-                                BoxShadow(
-                                  color: ColorPage.thirdcolor.withOpacity(0.10),
-                                  blurRadius: 3,
-                                  spreadRadius: 2,
-                                  offset:Offset(0, 4),
-                                )
-                              ] ,
-                              border: Border.all(
-                                  color: ColorPage.primarycolor
-                              ),
-                              borderRadius: BorderRadius.circular(width*0.01),
-                            ),
-                            child: InkWell(
-                                onTap: () {
-                                  selectFileToMessage("doctors");
-                                },
-                                child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
-                          ),
-                        SizedBox(height: height*0.05,),
-                        Container(
-                          height: height*0.06,
-                          width: width*0.23,
-                          decoration: BoxDecoration(
-                            color: ColorPage.color3,
-                            borderRadius: BorderRadius.circular(width*0.01),
-                          ),
-                          child: TextFormField(
-                            controller: nameController,
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
-                            decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.all(width*0.005),
-                                child: SvgPicture.asset(ImageIcons.user),
-                              ),
-                              labelText: "Doctor's name",
-                              labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorPage.primarycolor,
-                                  ),
-                                  borderRadius: BorderRadius.circular(width*0.01)
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ColorPage.primarycolor
-                                ),
-                                borderRadius: BorderRadius.circular(width*0.01),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: height*0.03,),
-                        Container(
-                          height: height*0.06,
-                          width: width*0.23,
-                          decoration: BoxDecoration(
-                            color: ColorPage.color3,
-                            borderRadius: BorderRadius.circular(width*0.01),
-                          ),
-                          child: TextFormField(
-                            controller: categoryController,
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
-                            decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.all(width*0.005),
-                                child: Icon(CupertinoIcons.list_bullet_indent,color: ColorPage.primarycolor,),
-                              ),
-                              labelText: "Specialist",
-                              labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorPage.primarycolor,
-                                  ),
-                                  borderRadius: BorderRadius.circular(width*0.01)
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ColorPage.primarycolor
-                                ),
-                                borderRadius: BorderRadius.circular(width*0.01),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: height*0.03,),
-                        Container(
-                          height: height*0.06,
-                          width: width*0.23,
-                          decoration: BoxDecoration(
-                            color: ColorPage.color3,
-                            borderRadius: BorderRadius.circular(width*0.01),
-                          ),
-                          child: TextFormField(
-                            controller: expController,
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.text,
-                            style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
-                            decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.all(width*0.005),
-                                child: Icon(CupertinoIcons.calendar,color: ColorPage.primarycolor,),
-                              ),
-                              labelText: "Experience",
-                              labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorPage.primarycolor,
-                                  ),
-                                  borderRadius: BorderRadius.circular(width*0.01)
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: ColorPage.primarycolor
-                                ),
-                                borderRadius: BorderRadius.circular(width*0.01),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: height*0.04,),
-                        InkWell(
-                          onTap: () {
-                            docDetails();
-                          },
-                          child: Container(
-                            height: height*0.06,
-                            width: width*0.17,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradientPainter(
-                                colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
-                              ),
-                              borderRadius: BorderRadius.circular(width*0.01),
-                            ),
-                            child: Center(
-                              child: Text("Add",style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: ColorPage.secondarycolor,
-                                  fontSize: width*0.012
-                              ),),
-                            ),
-                          ),
-                        )
-                      ],
-                    )
+                     Column(
+                       children: [
+                         docImage != null? Container(
+                           height: height*0.2,
+                           width: width*0.1,
+                           decoration: BoxDecoration(
+                               border: Border.all(width: width*0.001),
+                               boxShadow:[
+                                 BoxShadow(
+                                   color: ColorPage.thirdcolor.withOpacity(0.10),
+                                   blurRadius: 3,
+                                   spreadRadius: 2,
+                                   offset:Offset(0, 4),
+                                 )
+                               ] ,
+                               borderRadius: BorderRadius.circular(width*0.01),
+                               image: DecorationImage(image: NetworkImage(docImage!))
+                           ),
+                         ):
+                         Container(
+                           height: height*0.2,
+                           width: width*0.1,
+                           decoration: BoxDecoration(
+                             gradient: LinearGradientPainter(
+                               colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                             ),
+                             boxShadow:[
+                               BoxShadow(
+                                 color: ColorPage.thirdcolor.withOpacity(0.10),
+                                 blurRadius: 3,
+                                 spreadRadius: 2,
+                                 offset:Offset(0, 4),
+                               )
+                             ] ,
+                             border: Border.all(
+                                 color: ColorPage.primarycolor
+                             ),
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: InkWell(
+                               onTap: () {
+                                 selectFileToMessage("doctors");
+                               },
+                               child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
+                         ),
+
+                         SizedBox(height: height*0.03,),
+                         Container(
+                           height: height*0.06,
+                           width: width*0.23,
+                           decoration: BoxDecoration(
+                             color: ColorPage.color3,
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: TextFormField(
+                             controller: nameController,
+                             textInputAction: TextInputAction.next,
+                             keyboardType: TextInputType.text,
+                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                             decoration: InputDecoration(
+                               prefixIcon: Padding(
+                                 padding: EdgeInsets.all(width*0.005),
+                                 child: SvgPicture.asset(ImageIcons.user),
+                               ),
+                               labelText: "Doctor's name",
+                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                               focusedBorder: OutlineInputBorder(
+                                   borderSide: BorderSide(
+                                     color: ColorPage.primarycolor,
+                                   ),
+                                   borderRadius: BorderRadius.circular(width*0.01)
+                               ),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                     color: ColorPage.primarycolor
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.01),
+                               ),
+                             ),
+                           ),
+                         ),
+                         SizedBox(height: height*0.015,),
+                         Container(
+                           height: height*0.06,
+                           width: width*0.23,
+                           decoration: BoxDecoration(
+                             color: ColorPage.color3,
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: TextFormField(
+                             controller: categoryController,
+                             textInputAction: TextInputAction.next,
+                             keyboardType: TextInputType.text,
+                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                             decoration: InputDecoration(
+                               prefixIcon: Padding(
+                                 padding: EdgeInsets.all(width*0.005),
+                                 child: Icon(CupertinoIcons.list_bullet_indent,color: ColorPage.primarycolor,),
+                               ),
+                               labelText: "Specialist",
+                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                               focusedBorder: OutlineInputBorder(
+                                   borderSide: BorderSide(
+                                     color: ColorPage.primarycolor,
+                                   ),
+                                   borderRadius: BorderRadius.circular(width*0.01)
+                               ),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                     color: ColorPage.primarycolor
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.01),
+                               ),
+                             ),
+                           ),
+                         ),
+                         SizedBox(height: height*0.015,),
+                         Container(
+                           height: height*0.06,
+                           width: width*0.23,
+                           decoration: BoxDecoration(
+                             color: ColorPage.color3,
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: TextFormField(
+                             controller: expController,
+                             textInputAction: TextInputAction.next,
+                             keyboardType: TextInputType.text,
+                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                             decoration: InputDecoration(
+                               prefixIcon: Padding(
+                                 padding: EdgeInsets.all(width*0.005),
+                                 child: Icon(CupertinoIcons.calendar,color: ColorPage.primarycolor,),
+                               ),
+                               labelText: "Experience",
+                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                               focusedBorder: OutlineInputBorder(
+                                   borderSide: BorderSide(
+                                     color: ColorPage.primarycolor,
+                                   ),
+                                   borderRadius: BorderRadius.circular(width*0.01)
+                               ),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                     color: ColorPage.primarycolor
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.01),
+                               ),
+                             ),
+                           ),
+                         ),
+                         SizedBox(height: height*0.015),
+                         Container(
+                           height: height*0.06,
+                           width: width*0.23,
+                           decoration: BoxDecoration(
+                             color: ColorPage.color3,
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: TextFormField(
+                             controller: consController,
+                             textInputAction: TextInputAction.next,
+                             keyboardType: TextInputType.text,
+                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                             decoration: InputDecoration(
+                               prefixIcon: Padding(
+                                 padding: EdgeInsets.all(width*0.005),
+                                 child: Icon(CupertinoIcons.money_dollar,color: ColorPage.primarycolor,),
+                               ),
+                               labelText: "Consultation",
+                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                               focusedBorder: OutlineInputBorder(
+                                   borderSide: BorderSide(
+                                     color: ColorPage.primarycolor,
+                                   ),
+                                   borderRadius: BorderRadius.circular(width*0.01)
+                               ),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                     color: ColorPage.primarycolor
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.01),
+                               ),
+                             ),
+                           ),
+                         ),
+                         SizedBox(height: height*0.015,),
+                         Container(
+                           height: height*0.06,
+                           width: width*0.23,
+                           decoration: BoxDecoration(
+                             color: ColorPage.color3,
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: TextFormField(
+                             controller: adminController,
+                             textInputAction: TextInputAction.next,
+                             keyboardType: TextInputType.text,
+                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                             decoration: InputDecoration(
+                               prefixIcon: Padding(
+                                 padding: EdgeInsets.all(width*0.005),
+                                 child: Icon(CupertinoIcons.money_dollar_circle,color: ColorPage.primarycolor,),
+                               ),
+                               labelText: "Admin Fee",
+                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                               focusedBorder: OutlineInputBorder(
+                                   borderSide: BorderSide(
+                                     color: ColorPage.primarycolor,
+                                   ),
+                                   borderRadius: BorderRadius.circular(width*0.01)
+                               ),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                     color: ColorPage.primarycolor
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.01),
+                               ),
+                             ),
+                           ),
+                         ),
+                         SizedBox(height: height*0.015,),
+                         Container(
+                           height: height*0.06,
+                           width: width*0.23,
+                           decoration: BoxDecoration(
+                             color: ColorPage.color3,
+                             borderRadius: BorderRadius.circular(width*0.01),
+                           ),
+                           child: TextFormField(
+                             controller: disController,
+                             textInputAction: TextInputAction.done,
+                             keyboardType: TextInputType.text,
+                             style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                             decoration: InputDecoration(
+                               prefixIcon: Padding(
+                                 padding: EdgeInsets.all(width*0.005),
+                                 child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
+                               ),
+                               labelText: "Discount",
+                               labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                               focusedBorder: OutlineInputBorder(
+                                   borderSide: BorderSide(
+                                     color: ColorPage.primarycolor,
+                                   ),
+                                   borderRadius: BorderRadius.circular(width*0.01)
+                               ),
+                               enabledBorder: OutlineInputBorder(
+                                 borderSide: BorderSide(
+                                     color: ColorPage.primarycolor
+                                 ),
+                                 borderRadius: BorderRadius.circular(width*0.01),
+                               ),
+                             ),
+                           ),
+                         ),
+                         SizedBox(height: height*0.03,),
+                         InkWell(
+                           onTap: () {
+                             docDetails();
+                           },
+                           child: Container(
+                             height: height*0.06,
+                             width: width*0.17,
+                             decoration: BoxDecoration(
+                               gradient: LinearGradientPainter(
+                                 colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
+                               ),
+                               borderRadius: BorderRadius.circular(width*0.01),
+                             ),
+                             child: Center(
+                               child: Text("Add",style: TextStyle(
+                                   fontWeight: FontWeight.w600,
+                                   color: ColorPage.secondarycolor,
+                                   fontSize: width*0.012
+                               ),),
+                             ),
+                           ),
+                         )
+                       ],
+                     )
                         ],
                       ),
                     )

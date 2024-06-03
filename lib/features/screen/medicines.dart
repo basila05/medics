@@ -63,7 +63,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
     // ignore: use_build_context_synchronously
     // ScaffoldMessenger.of(context).clearSnackBars();
     setState(() {});
+    print(medImage);
   }
+
   medDetails(){
     ref.read(MedicineControllerProvider).addMedicineData(
         MedicineModel(

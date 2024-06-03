@@ -64,34 +64,31 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                             width: width*0.1,
                             height: height*0.2,
                             color: Colors.white,
+                              child: Image(image:NetworkImage(data[index].image))
                           ),
                           Container(
                             width: width*0.18,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(data[index].name.toString(),style: TextStyle(
-                                        fontSize: width*0.015,
-                                        fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(data[index].spcl.toString(),style: TextStyle(
-                                        // color: ColorPage.sixthcolor,
-                                        fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(data[index].exp.toString(),style: TextStyle(
-                                        // color: ColorPage.sixthcolor,
-                                        fontWeight: FontWeight.w600),),
-                                  ],
-                                ),
+                                Text(data[index].name.toString(),style: TextStyle(
+                                    fontSize: width*0.015,
+                                    fontWeight: FontWeight.w600),),
+                                Text(data[index].spcl.toString(),style: TextStyle(
+                                    // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
+                                Text(data[index].exp.toString(),style: TextStyle(
+                                    // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
+                                Text("${data[index].cons.toString()}",style: TextStyle(
+                                  // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
+                                Text("${data[index].admin.toString()}",style: TextStyle(
+                                  // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
+                                Text("${data[index].dis.toString()}",style: TextStyle(
+                                  // color: ColorPage.sixthcolor,
+                                    fontWeight: FontWeight.w600),),
                               ],
                             ),
                           ),
