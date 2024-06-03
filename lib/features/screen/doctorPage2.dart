@@ -32,7 +32,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                 child: GridView.builder(
                   itemCount:data.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 3,
+                    childAspectRatio: 2.5,
                     crossAxisSpacing:width*0.03,
                     mainAxisSpacing: height*0.05,
                     crossAxisCount: 2,
@@ -43,7 +43,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                   itemBuilder: (context, index) {
                     return Container(
                       width: width*0.3,
-                      height: height*0.03,
+                      height: height*0.05,
                       decoration: BoxDecoration(
                         gradient: LinearGradientPainter(
                           colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],

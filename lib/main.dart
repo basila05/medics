@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medics/features/screen/doctorPage2.dart';
 import 'package:medics/features/screen/doctors.dart';
 import 'package:medics/features/screen/medicines.dart';
 // import 'package:medics/doctors.dart';
@@ -42,7 +43,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:DoctorPage()
+          home:DoctorDetails()
       ),);
   }
 }
