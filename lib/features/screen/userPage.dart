@@ -80,6 +80,11 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                                   Text(data[index].password.toString(),style: TextStyle(fontWeight: FontWeight.w600),),
                                 ],
                               ),
+                              InkWell(
+                                  onTap: () {
+                                    FirebaseFirestore.instance.collection("users").doc(data[index].id).delete();
+                                  },
+                                  child: Icon(Icons.delete)),
                             ],
                           ),
                         ),
