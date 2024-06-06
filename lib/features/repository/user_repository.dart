@@ -38,8 +38,8 @@ class AddingRepository {
     },);
   }
 
-  deleteDoc(DoctorModel docDelete){
-    _doctors.doc(docDelete.id).delete();
+  deleteDoc(String id){
+    _doctors.doc(id).delete();
   }
   streamDoc(){
     return _doctors.snapshots().map((event) => event.docs.map((e) => DoctorModel.fromMap(e.data() as Map<String, dynamic>)).toList());

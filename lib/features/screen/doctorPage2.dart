@@ -16,6 +16,9 @@ class DoctorDetails extends ConsumerStatefulWidget {
 }
 
 class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
+  deletedData(String id){
+    ref.read(DoctorControllerProvider).deleteData(id);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +101,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                               Icon(Icons.edit),
                               InkWell(
                                   onTap: () {
-                                    FirebaseFirestore.instance.collection("doctors").doc(data[index].id).delete();
+                                    deletedData(data[index].id);
                                   },
                                   child: Icon(Icons.delete)),
                             ],

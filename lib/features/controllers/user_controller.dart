@@ -33,8 +33,8 @@ class AddingController {
   Stream StreamDoctorData(){
     return _doctorRepository.streamDoc();
   }
-  deleteData(DoctorModel docDelete){
-    _doctorRepository.deleteDoc(docDelete);
+  deleteData(String id){
+    _doctorRepository.deleteDoc(id);
   }
   updateData(DoctorModel docUpdate){
     _doctorRepository.UpdateDoc(docUpdate);
