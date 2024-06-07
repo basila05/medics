@@ -98,7 +98,11 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(Icons.edit),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => data[index],));
+                                },
+                                  child: Icon(Icons.edit)),
                               InkWell(
                                   onTap: () {
                                     deletedData(data[index].id);

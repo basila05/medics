@@ -7,6 +7,7 @@ import 'package:gradients/gradients.dart';
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 import '../controllers/user_controller.dart';
+import '../repository/user_repository.dart';
 
 
 class MedicineDetails extends ConsumerStatefulWidget {
@@ -17,6 +18,9 @@ class MedicineDetails extends ConsumerStatefulWidget {
 }
 
 class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
+  deleted(String id){
+    ref.read(MedicineControllerProvider).delete(id);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +97,8 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                               Icon(Icons.edit),
                               InkWell(
                                   onTap: () {
-                                    FirebaseFirestore.instance.collection("medicine").doc(data[index].id).delete();
+                                    deleted(data[index].id);
+                                    // FirebaseFirestore.instance.collection("medicine").doc(data[index].id).delete();
                                   },
                                   child: Icon(Icons.delete)),
                             ],

@@ -57,8 +57,8 @@ class MedicineController{
   Stream StreamMedicineData(){
     return _medicineRepository.streamMed();
   }
-  deleteData(MedicineModel medDelete){
-    _medicineRepository.deleteMed(medDelete);
+  delete(String id){
+    _medicineRepository.deleteMed(id);
   }
   updateData(MedicineModel medUpdate){
     _medicineRepository.UpdateMed(medUpdate);

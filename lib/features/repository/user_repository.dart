@@ -67,8 +67,8 @@ class MedicineRepository{
     },);
   }
 
-  deleteMed(MedicineModel medDelete){
-    _medicine.doc(medDelete.id).delete();
+  deleteMed(String id){
+    _medicine.doc(id).delete();
   }
   streamMed(){
     return _medicine.snapshots().map((event) => event.docs.map((e) => MedicineModel.fromMap(e.data() as Map<String, dynamic>)).toList());

@@ -35,7 +35,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                     childAspectRatio: 5,
                     crossAxisSpacing:width*0.03,
                     mainAxisSpacing: height*0.05,
-                    crossAxisCount: 2,
+                    crossAxisCount: 1,
                   ),
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
@@ -43,7 +43,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                   itemBuilder: (context, index) {
                     return Container(
                          width: width*0.3,
-                         height: height*0.03,
+                         height: height*0.05,
                          decoration: BoxDecoration(
                            gradient: LinearGradientPainter(
                              colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
