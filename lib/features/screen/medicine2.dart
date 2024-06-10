@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gradients/gradients.dart';
+import 'package:medics/features/screen/update.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
@@ -68,7 +69,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                           Container(
                             width: width*0.1,
                             height: height*0.2,
-                            child: Image(image:NetworkImage( data[index].image))
+                            child: Image(image:NetworkImage( data[index].image),fit: BoxFit.fill,)
                           ),
                           Container(
                             width: width*0.12,
@@ -93,7 +94,12 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(Icons.edit),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => UpdatePage(detail: data[index]),));
+
+                                },
+                                  child: Icon(Icons.edit)),
                               InkWell(
                                   onTap: () {
                                     deleted(data[index].id);

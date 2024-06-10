@@ -72,9 +72,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
         MedicineModel(
             image: medImage.toString(),
             name: nameController.text,
-            ml: mlController.text,
-            rate: double.parse(rateController.text,),
-            off: double.parse(offController.text,),
+             ml: mlController.text,
+            rate: int.parse(rateController.text),
+            off: int.parse(offController.text,),
             id:  idController.text));
   }
   @override
@@ -234,9 +234,10 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                       )
                                     ] ,
                                     borderRadius: BorderRadius.circular(width*0.01),
-                                    image: DecorationImage(image: NetworkImage(medImage!))
+                                    image: DecorationImage(image: NetworkImage(medImage!),fit: BoxFit.fill)
                                 ),
-                              ):Container(
+                              ):
+                              Container(
                                 height: height*0.2,
                                 width: width*0.1,
                                 decoration: BoxDecoration(
@@ -412,6 +413,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                               InkWell(
                                 onTap: () {
                                   medDetails();
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineDetails(),));
                                 },
                                 child: Container(
                                   height: height*0.06,

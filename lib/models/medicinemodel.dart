@@ -2,8 +2,8 @@ class MedicineModel {
   String image;
   String name;
   String ml;
-  double rate;
-  double off;
+  int rate;
+  int off;
   String id;
 
   MedicineModel({
@@ -28,10 +28,10 @@ class MedicineModel {
 
   factory MedicineModel.fromMap(Map<String, dynamic>map){
     return MedicineModel(
-      rate: map['rate'].toDouble() ?? "",
+      rate: map['rate']?? "",
       ml: map['ml'] ?? "",
       image: map['image'] ?? "",
-      off: map['off'].toDouble() ?? "",
+      off: map['off'] ?? "",
       name: map['name'] ?? "",
       id: map['id'] ?? "",
     );
@@ -40,8 +40,8 @@ class MedicineModel {
   MedicineModel copyWith({
     String? name,
     String? image,
-    double? rate,
-    double? off,
+    int? rate,
+    int? off,
     String? ml,
     String? id,
   }) {

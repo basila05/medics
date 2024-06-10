@@ -13,7 +13,10 @@ import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 
 class UpdatePage extends ConsumerStatefulWidget {
-  const UpdatePage({super.key});
+  final MedicineModel detail;
+  const UpdatePage({super.key,
+    required this.detail
+  });
 
   @override
   ConsumerState createState() => _MedicinePageState();
@@ -48,6 +51,8 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
 
     setState(() {});
   }
+  
+
 
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
@@ -66,18 +71,33 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
     setState(() {});
     print(medImage);
   }
+  updatedata(MedicineModel detail){
 
-  medDetails(){
-    ref.read(MedicineControllerProvider).addMedicineData(
-        MedicineModel(
-            image: medImage.toString(),
-            name: nameController.text,
-            ml: mlController.text,
-            rate: double.parse(rateController.text,),
-            off: double.parse(offController.text,),
-            id:  idController.text));
+    ref.watch(MedicineControllerProvider).updateData(detail.copyWith(
+        name: nameController.text,
+        ml: mlController.text,
+        rate: int.parse(rateController.text),
+        off: int.parse(offController.text),
+        image: medImage
+
+    ));
+
+
   }
+
   @override
+    void initState() {
+
+      nameController.text =widget.detail.name;
+      mlController.text =widget.detail.ml;
+      rateController.text =widget.detail.rate.toString();
+      offController.text =widget.detail.off.toString();
+      medImage=widget.detail.image;
+
+
+    // TODO: implement initState
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -221,36 +241,13 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                           ):
                           Column(
                             children: [
-                              medImage != null? Container(
+                           Container(
                                 height: height*0.2,
                                 width: width*0.1,
                                 decoration: BoxDecoration(
-                                    boxShadow:[
-                                      BoxShadow(
-                                        color: ColorPage.thirdcolor.withOpacity(0.10),
-                                        blurRadius: 3,
-                                        spreadRadius: 2,
-                                        offset:Offset(0, 4),
-                                      )
-                                    ] ,
-                                    borderRadius: BorderRadius.circular(width*0.01),
-                                    image: DecorationImage(image: NetworkImage(medImage!))
-                                ),
-                              ):Container(
-                                height: height*0.2,
-                                width: width*0.1,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradientPainter(
-                                    colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
-                                  ),
-                                  boxShadow:[
-                                    BoxShadow(
-                                      color: ColorPage.thirdcolor.withOpacity(0.10),
-                                      blurRadius: 3,
-                                      spreadRadius: 2,
-                                      offset:Offset(0, 4),
-                                    )
-                                  ] ,
+                                  image: DecorationImage(image: NetworkImage(medImage!),fit: BoxFit.fill),
+
+
                                   border: Border.all(
                                       color: ColorPage.primarycolor
                                   ),
@@ -260,7 +257,7 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                                     onTap: () {
                                       selectFileToMessage("medicine");
                                     },
-                                    child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
+                                ),
                               ),
                               SizedBox(height: height*0.05,),
                               Container(
@@ -411,7 +408,8 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                               SizedBox(height: height*0.03,),
                               InkWell(
                                 onTap: () {
-                                  medDetails();
+                                   updatedata(widget.detail);
+                                   Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineDetails(),));
                                 },
                                 child: Container(
                                   height: height*0.06,
