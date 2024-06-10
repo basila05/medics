@@ -1,26 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gradients/gradients.dart';
+import 'package:medics/features/controllers/user_controller.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
-import '../controllers/user_controller.dart';
-import '../repository/user_repository.dart';
 
-
-class MedicineDetails extends ConsumerStatefulWidget {
-  const MedicineDetails({super.key});
+class HsptlDetails extends ConsumerStatefulWidget {
+  const HsptlDetails({super.key});
 
   @override
-  ConsumerState createState() => _MedicineDetailsState();
+  ConsumerState createState() => _HsptlDetailsState();
 }
 
-class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
-  deleted(String id){
-    ref.read(MedicineControllerProvider).delete(id);
-  }
+class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +25,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ref.watch(StreamMedProvider).when(data: (data) => Container(
+              ref.watch(StreamHsptlProvider).when(data: (data) => Container(
                 width: width*0.7,
                 height: height*1,
                 child: GridView.builder(
@@ -66,9 +60,9 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            width: width*0.1,
-                            height: height*0.2,
-                            child: Image(image:NetworkImage( data[index].image))
+                              width: width*0.1,
+                              height: height*0.2,
+                              child: Image(image:NetworkImage( data[index].image))
                           ),
                           Container(
                             width: width*0.12,
@@ -78,26 +72,16 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                                 Text(data[index].name.toString(),style: TextStyle(
                                     fontSize: width*0.015,
                                     fontWeight: FontWeight.w600),),
-                                Text("${data[index].ml}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].rate.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].off.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
                               ],
                             ),
-                         ),
+                          ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Icon(Icons.edit),
                               InkWell(
                                   onTap: () {
-                                    deleted(data[index].id);
-                                    // FirebaseFirestore.instance.collection("medicine").doc(data[index].id).delete();
+                                    FirebaseFirestore.instance.collection("hospital").doc(data[index].id).delete();
                                   },
                                   child: Icon(Icons.delete)),
                             ],

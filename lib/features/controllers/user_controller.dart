@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medics/models/doctormodel.dart';
 import '../../features/repository/user_repository.dart';
+import '../../models/hospitalModel.dart';
 import '../../models/medicinemodel.dart';
 import '../../models/usersmodel1.dart';
 
@@ -62,6 +63,34 @@ class MedicineController{
   }
   updateData(MedicineModel medUpdate){
     _medicineRepository.UpdateMed(medUpdate);
+  }
+
+}
+
+///hospital
+final HsptlControllerProvider = Provider((ref) => HsptlController(hsptlRepository: ref.watch(HsptlRepositoryProvider)));
+final StreamHsptlProvider = StreamProvider((ref) => ref.watch(HsptlControllerProvider).StreamHsptlData());
+
+class HsptlController {
+  final HsptlRepository _hsptlRepository;
+
+  HsptlController({required HsptlRepository hsptlRepository})
+      : _hsptlRepository= hsptlRepository;
+
+  addHsptlData(HsptlModel hsptlAdd) {
+    _hsptlRepository.add(hsptlAdd);
+  }
+
+  Stream StreamHsptlData() {
+    return _hsptlRepository.streamHsptl();
+  }
+
+  deleteData(HsptlModel hsptlDelete) {
+    _hsptlRepository.deleteHsptl(hsptlDelete);
+  }
+
+  updateData(HsptlModel hsptlUpdate) {
+    _hsptlRepository.UpdateHsptl(hsptlUpdate);
   }
 
 }

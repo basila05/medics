@@ -19,6 +19,7 @@ class ImageIcons {
   static const user = "assets/images/user.svg";
   static const password = "assets/images/password.svg";
   static const email = "assets/images/email.svg";
+  static const Search = "assets/images/Search.svg";
   static const vector1 = "assets/images/vector1.svg";
   static const doct = "assets/images/doct.png";
   static const doct2 = "assets/images/doct2.png";
