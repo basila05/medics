@@ -7,6 +7,7 @@ import 'package:medics/features/screen/doctorPage2.dart';
 import 'package:medics/features/screen/doctors.dart';
 import 'package:medics/features/screen/hsptlPage.dart';
 import 'package:medics/features/screen/medicines.dart';
+import 'package:medics/features/screen/userPage.dart';
 // import 'package:medics/doctors.dart';
 import 'package:medics/firebase_options.dart';
 // import 'package:medics/login.dart';
@@ -45,8 +46,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:HsptlPage()
-          home:HomePage()
+          home:UsersPage()
       ),);
   }
 }
