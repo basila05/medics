@@ -496,6 +496,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
                          InkWell(
                            onTap: () {
                              docDetails();
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorDetails(),));
                            },
                            child: Container(
                              height: height*0.06,

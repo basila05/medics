@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
+import 'package:medics/features/screen/update_doctor.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
@@ -100,7 +101,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => data[index],));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorUpdatePage(details: data[index],),));
                                 },
                                   child: Icon(Icons.edit)),
                               InkWell(
@@ -109,6 +110,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                                   },
                                   child: Icon(Icons.delete)),
                             ],
+
                           )
                         ],
                       ),

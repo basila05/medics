@@ -75,7 +75,6 @@ class MedicineRepository{
     return _medicine.snapshots().map((event) => event.docs.map((e) => MedicineModel.fromMap(e.data() as Map<String, dynamic>)).toList());
   }
   UpdateMed(MedicineModel mededit){
-
     _medicine.doc(mededit.id).update(mededit.toMap());
   }
 

@@ -16,7 +16,7 @@ import 'package:medics/firebase_options.dart';
 
 import 'features/screen/homepage.dart';
 import 'features/screen/splashcreen.dart';
-import 'features/screen/update.dart';
+import 'features/screen/update_medicine.dart';
 // import 'homepage.dart';
 
 var height;
@@ -46,7 +46,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:UsersPage()
+          home:HomePage()
       ),);
   }
 }
