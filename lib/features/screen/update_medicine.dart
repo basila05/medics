@@ -76,8 +76,8 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
     ref.watch(MedicineControllerProvider).updateData(detail.copyWith(
         name: nameController.text,
         ml: mlController.text,
-        rate: int.parse(rateController.text),
-        off: int.parse(offController.text),
+        rate: double.parse(rateController.text),
+        off: double.parse(offController.text),
         image: medImage
 
     ));

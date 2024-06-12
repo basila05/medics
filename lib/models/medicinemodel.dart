@@ -2,8 +2,8 @@ class MedicineModel {
   String image;
   String name;
   String ml;
-  int rate;
-  int off;
+  double rate;
+  double off;
   String id;
 
   MedicineModel({
@@ -31,7 +31,7 @@ class MedicineModel {
       rate: map['rate']?? "",
       ml: map['ml'] ?? "",
       image: map['image'] ?? "",
-      off: map['off'] ?? "",
+      off: map['off']?? "",
       name: map['name'] ?? "",
       id: map['id'] ?? "",
     );
@@ -40,8 +40,8 @@ class MedicineModel {
   MedicineModel copyWith({
     String? name,
     String? image,
-    int? rate,
-    int? off,
+    double? rate,
+    double? off,
     String? ml,
     String? id,
   }) {
