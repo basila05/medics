@@ -24,6 +24,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController rateController = TextEditingController();
   TextEditingController offController = TextEditingController();
+  TextEditingController desController = TextEditingController();
   TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
   bool toggle = false;
@@ -73,6 +74,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
             image: medImage.toString(),
             name: nameController.text,
              ml: mlController.text,
+            des: desController.text,
             rate: double.parse(rateController.text),
             off: double.parse(offController.text,),
             id:  idController.text));
@@ -102,7 +104,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                 Stack(
                   children: [
                     Container(
-                      height: height*0.85,
+                      height: height*0.9,
                       width: width*0.65,
                       decoration: BoxDecoration(
                         color: ColorPage.fourthcolor,
@@ -110,7 +112,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(height: height*0.07,),
+                          SizedBox(height: height*0.035,),
                           Stack(
                             children: [
                               InkWell(
@@ -191,10 +193,10 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                 ),)
                             ],
                           ),
-                          SizedBox(height: height*0.05,),
+                          SizedBox(height: height*0.03,),
                           toggle? Column(
                             children: [
-                              SizedBox(height: height*0.08,),
+                              SizedBox(height: height*0.1,),
                               InkWell(
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineDetails(),));
@@ -263,7 +265,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                     },
                                     child: Icon(CupertinoIcons.camera_on_rectangle,size: width*0.03,color: ColorPage.secondarycolor,)),
                               ),
-                              SizedBox(height: height*0.05,),
+                              SizedBox(height: height*0.03,),
                               Container(
                                 height: height*0.06,
                                 width: width*0.23,
@@ -298,7 +300,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.02,),
+                              SizedBox(height: height*0.015,),
                               Container(
                                 height: height*0.06,
                                 width: width*0.23,
@@ -333,7 +335,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.02,),
+                              SizedBox(height: height*0.015,),
                               Container(
                                 height: height*0.06,
                                 width: width*0.23,
@@ -345,9 +347,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   controller: rateController,
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                  ],
+                                  // inputFormatters: [
+                                  //   FilteringTextInputFormatter.digitsOnly,
+                                  // ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -371,7 +373,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.02,),
+                              SizedBox(height: height*0.015,),
                               Container(
                                 height: height*0.06,
                                 width: width*0.23,
@@ -383,9 +385,9 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   controller: offController,
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                  ],
+                                  // inputFormatters: [
+                                  //   FilteringTextInputFormatter.digitsOnly,
+                                  // ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -393,6 +395,41 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                       child: Icon(Icons.currency_rupee,color: ColorPage.primarycolor,),
                                     ),
                                     labelText: "Off",
+                                    labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: ColorPage.primarycolor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(width*0.01)
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorPage.primarycolor
+                                      ),
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height*0.015,),
+                              Container(
+                                height: height*0.06,
+                                width: width*0.23,
+                                decoration: BoxDecoration(
+                                  color: ColorPage.color3,
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: TextFormField(
+                                  controller: desController,
+                                  textInputAction: TextInputAction.done,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                                  decoration: InputDecoration(
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(width*0.005),
+                                      child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
+                                    ),
+                                    labelText: "Description",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
