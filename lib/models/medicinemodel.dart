@@ -32,9 +32,9 @@ class MedicineModel {
   factory MedicineModel.fromMap(Map<String, dynamic>map){
     return MedicineModel(
       rate: map['rate'].toDouble() ?? "",
-      ml: map['ml'].toDouble() ?? "",
+      off: map['off'].toDouble() ?? "",
       image: map['image'] ?? "",
-      off: map['off'] ?? "",
+      ml: map['ml'] ?? "",
       name: map['name'] ?? "",
       id: map['id'] ?? "",
       des: map['des'] ?? "",
