@@ -54,7 +54,6 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
   }
   
 
-
   Future uploadFileToFireBase(String name, fileBytes) async {
     uploadTask = FirebaseStorage.instance
         .ref('medicine/${DateTime.now().toString()}-$name')
