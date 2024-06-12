@@ -390,9 +390,9 @@ class _DoctorPageState extends ConsumerState<DoctorUpdatePage> {
                                   controller: consController,
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                  ],
+                                  // inputFormatters: [
+                                  //   FilteringTextInputFormatter.digitsOnly,
+                                  // ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -428,9 +428,9 @@ class _DoctorPageState extends ConsumerState<DoctorUpdatePage> {
                                   controller: adminController,
                                   textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                  ],
+                                  // inputFormatters: [
+                                  //   FilteringTextInputFormatter.digitsOnly,
+                                  // ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -466,9 +466,9 @@ class _DoctorPageState extends ConsumerState<DoctorUpdatePage> {
                                   controller: disController,
                                   textInputAction: TextInputAction.done,
                                   keyboardType: TextInputType.number,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                  ],
+                                  // inputFormatters: [
+                                  //   FilteringTextInputFormatter.digitsOnly,
+                                  // ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
