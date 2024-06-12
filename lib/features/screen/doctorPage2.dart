@@ -106,7 +106,87 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                                   child: Icon(Icons.edit)),
                               InkWell(
                                   onTap: () {
-                                    deletedData(data[index].id);
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            content: Container(
+                                              height: height*0.2,
+                                              width: width*0.1,
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Container(
+                                                      child: Column(
+                                                        children: [
+                                                          Text("Are you sure You want to",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: width*0.015,
+                                                                color: ColorPage.thirdcolor),),
+                                                          Text("Delete the Doctor?",
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: width*0.015,
+                                                                color: ColorPage.thirdcolor),),
+                                                        ],)),
+                                                  Container(
+                                                    height: width*0.025,
+                                                    width: width*0.15,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            deletedData(data[index].id);
+                                                            },
+                                                          child: Container(
+                                                            height: width*0.025,
+                                                            width: width*0.07,
+                                                            decoration: BoxDecoration(
+                                                                color: ColorPage.primarycolor,
+                                                                borderRadius: BorderRadius.circular(width*0.015)
+                                                            ),
+                                                            child: Center(
+                                                              child: Text("Yes",
+                                                                style: TextStyle(
+                                                                    fontSize: width*0.015,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    color: ColorPage.secondarycolor
+                                                                ),),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Navigator.pop(context);
+                                                          },
+                                                          child: Container(
+                                                            height: width*0.025,
+                                                            width: width*0.07,
+                                                            decoration: BoxDecoration(
+                                                                color: ColorPage.primarycolor,
+                                                                borderRadius: BorderRadius.circular(width*0.015)
+                                                            ),
+                                                            child: Center(
+                                                              child: Text("No",
+                                                                style: TextStyle(
+                                                                    fontSize: width*0.015,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    color: ColorPage.secondarycolor
+                                                                ),),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },);
                                   },
                                   child: Icon(Icons.delete)),
                             ],
