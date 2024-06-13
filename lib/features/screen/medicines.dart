@@ -26,6 +26,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
   TextEditingController offController = TextEditingController();
   TextEditingController desController = TextEditingController();
   TextEditingController idController = TextEditingController();
+  TextEditingController qtyController = TextEditingController();
   final formKey=GlobalKey<FormState>();
   bool toggle = false;
 
@@ -76,6 +77,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
              ml: mlController.text,
             des: desController.text,
             rate: double.parse(rateController.text),
+            qty: int.parse(qtyController.text),
             off: double.parse(offController.text,),
             id:  idController.text));
   }
@@ -427,9 +429,44 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
                                       padding: EdgeInsets.all(width*0.005),
-                                      child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
+                                      child: Icon(Icons.note_alt_outlined,color: ColorPage.primarycolor,),
                                     ),
                                     labelText: "Description",
+                                    labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: ColorPage.primarycolor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(width*0.01)
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorPage.primarycolor
+                                      ),
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height*0.015,),
+                              Container(
+                                height: height*0.06,
+                                width: width*0.23,
+                                decoration: BoxDecoration(
+                                  color: ColorPage.color3,
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: TextFormField(
+                                  controller: qtyController,
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                                  decoration: InputDecoration(
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(width*0.005),
+                                      child: Icon(Icons.format_indent_increase,color: ColorPage.primarycolor,),
+                                    ),
+                                    labelText: "Quantity",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(

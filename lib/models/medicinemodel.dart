@@ -6,6 +6,7 @@ class MedicineModel {
   double off;
   String id;
   String des;
+  int qty;
 
   MedicineModel({
     required this.name,
@@ -15,6 +16,7 @@ class MedicineModel {
     required this.off,
     required this.id,
     required this.des,
+    required this.qty,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,6 +28,7 @@ class MedicineModel {
       'rate': this.rate,
       'id': this.id,
       'des': this.des,
+      'qty': this.qty,
     };
   }
 
@@ -38,6 +41,7 @@ class MedicineModel {
       name: map['name'] ?? "",
       id: map['id'] ?? "",
       des: map['des'] ?? "",
+      qty: map['qty'] ?? "",
     );
   }
 
@@ -49,6 +53,7 @@ class MedicineModel {
     String? ml,
     String? id,
     String? des,
+    int? qty,
   }) {
     return MedicineModel(
       name: name ?? this.name,
@@ -58,6 +63,7 @@ class MedicineModel {
       off: off ?? this.off,
       rate: rate ?? this.rate,
       des: des ?? this.des,
+      qty: qty ?? this.qty,
     );
   }
 }
