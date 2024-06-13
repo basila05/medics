@@ -7,14 +7,14 @@ import 'package:medics/features/controllers/user_controller.dart';
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 
-class HsptlDetails extends ConsumerStatefulWidget {
-  const HsptlDetails({super.key});
+class AmbulanceDetails extends ConsumerStatefulWidget {
+  const AmbulanceDetails({super.key});
 
   @override
-  ConsumerState createState() => _HsptlDetailsState();
+  ConsumerState createState() => _AmbulanceDetailsState();
 }
 
-class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
+class _AmbulanceDetailsState extends ConsumerState<AmbulanceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ref.watch(StreamHsptlProvider).when(data: (data) => Container(
+              ref.watch(StreamAmbulanceProvider).when(data: (data) => Container(
                 width: width*0.7,
                 height: height*1,
                 child: GridView.builder(
@@ -60,16 +60,14 @@ class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                              width: width*0.1,
-                              height: height*0.2,
-                              child: Image(image:NetworkImage(data[index].image))
-                          ),
-                          Container(
                             width: width*0.12,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(data[index].name.toString(),style: TextStyle(
+                                    fontSize: width*0.015,
+                                    fontWeight: FontWeight.w600),),
+                                Text(data[index].number.toString(),style: TextStyle(
                                     fontSize: width*0.015,
                                     fontWeight: FontWeight.w600),),
                               ],
@@ -81,7 +79,7 @@ class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
                               Icon(Icons.edit),
                               InkWell(
                                   onTap: () {
-                                    FirebaseFirestore.instance.collection("hospital").doc(data[index].id).delete();
+                                    FirebaseFirestore.instance.collection("ambulance").doc(data[index].id).delete();
                                   },
                                   child: Icon(Icons.delete)),
                             ],

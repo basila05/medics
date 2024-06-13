@@ -14,6 +14,7 @@ import 'package:medics/firebase_options.dart';
 // import 'package:medics/medicines.dart';
 // import 'package:medics/splashcreen.dart';
 
+import 'features/screen/ambulancePage.dart';
 import 'features/screen/homepage.dart';
 import 'features/screen/splashcreen.dart';
 import 'features/screen/update_medicine.dart';
@@ -46,7 +47,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:HomePage()
+          home:AmbulancePage()
       ),);
   }
 }
