@@ -121,5 +121,4 @@ class AmbulanceController {
   updateData(AmbulanceModel ambulanceUpdate) {
     _ambulanceRepository.UpdateAmbulance(ambulanceUpdate);
   }
-
 }

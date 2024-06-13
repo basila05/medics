@@ -16,7 +16,6 @@ class AmbulanceModel {
       'id': this.id,
     };
   }
-
   factory AmbulanceModel.fromMap(Map<String, dynamic>map){
     return AmbulanceModel(
       name: map['name'] ?? "",

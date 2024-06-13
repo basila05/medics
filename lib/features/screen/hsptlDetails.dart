@@ -12,6 +12,7 @@ class HsptlDetails extends ConsumerStatefulWidget {
 
   @override
   ConsumerState createState() => _HsptlDetailsState();
+
 }
 
 class _HsptlDetailsState extends ConsumerState<HsptlDetails> {

@@ -86,8 +86,7 @@ class _AmbulanceDetailsState extends ConsumerState<AmbulanceDetails> {
                           )
                         ],
                       ),
-                    );
-                  },
+                    );},
                 ),
               ),
                 error: (error, stackTrace) {

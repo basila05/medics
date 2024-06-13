@@ -125,7 +125,6 @@ class AmbulanceRepository {
 
   AmbulanceRepository({required FirebaseFirestore firestore})
       :_firestore=firestore;
-
   CollectionReference get ambulance => _firestore.collection("hsptl");
 
   add(AmbulanceModel ambulanceData) {
