@@ -44,7 +44,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
 
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Uploading...")));
+        .showSnackBar(SnackBar(backgroundColor:ColorPage.primarycolor,content: Text("Uploading...")));
     uploadFileToFireBase(name, fileBytes);
 
     setState(() {});

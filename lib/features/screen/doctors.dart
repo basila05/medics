@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:ui_web';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -51,7 +48,7 @@ class _DoctorPageState extends ConsumerState<DoctorPage> {
 
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Uploading...")));
+        .showSnackBar(SnackBar(backgroundColor:ColorPage.primarycolor,content: Text("Uploading...")));
     uploadFileToFireBase(name, fileBytes);
 
     setState(() {});
