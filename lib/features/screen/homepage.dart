@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(height: height*0.1,),
                           toggle? Container(
-                                  height: height*0.3,
+                                  height: height*0.4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,6 +203,28 @@ class _HomePageState extends State<HomePage> {
                                               borderRadius: BorderRadius.circular(width*0.014)
                                           ),
                                           child: Center(child: Text("Hospital",style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: ColorPage.color5,
+                                              fontSize: width*0.012
+                                          ),)),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => HsptlPage(),));
+                                        },
+                                        child: Container(
+                                          height: height*0.07,
+                                          width: width*0.2,
+                                          decoration: BoxDecoration(
+                                              color: ColorPage.color3,
+                                              border: Border.all(
+                                                  color: ColorPage.color1,
+                                                  width: width*0.001
+                                              ),
+                                              borderRadius: BorderRadius.circular(width*0.014)
+                                          ),
+                                          child: Center(child: Text("Ambulance",style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: ColorPage.color5,
                                               fontSize: width*0.012
