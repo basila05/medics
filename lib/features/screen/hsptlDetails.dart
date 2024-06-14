@@ -122,6 +122,7 @@ class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
                                                       InkWell(
                                                         onTap: () {
                                                           FirebaseFirestore.instance.collection("hsptl").doc(data[index].id).delete();
+                                                          Navigator.pop(context);
                                                         },
                                                         child: Container(
                                                           height: width*0.025,

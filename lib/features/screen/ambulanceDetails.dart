@@ -111,6 +111,7 @@ class _AmbulanceDetailsState extends ConsumerState<AmbulanceDetails> {
                                                       InkWell(
                                                         onTap: () {
                                                           FirebaseFirestore.instance.collection("ambulace").doc(data[index].id).delete();
+                                                          Navigator.pop(context);
                                                         },
                                                         child: Container(
                                                           height: width*0.025,

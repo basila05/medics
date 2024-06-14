@@ -139,6 +139,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                                                       InkWell(
                                                         onTap: () {
                                                           deletedData(data[index].id);
+                                                          Navigator.pop(context);
                                                         },
                                                         child: Container(
                                                           height: width*0.025,
