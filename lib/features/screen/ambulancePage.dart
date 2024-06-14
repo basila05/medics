@@ -114,7 +114,7 @@ class _AmbulancePageState extends ConsumerState<AmbulancePage> {
                                       borderRadius: BorderRadius.circular(width*0.014)
                                   ),
                                   child: toggle?Center(
-                                    child: Text("Hospital",style: TextStyle(
+                                    child: Text("Ambulance",style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         color: ColorPage.secondarycolor,
                                         fontSize: width*0.012
@@ -141,7 +141,7 @@ class _AmbulancePageState extends ConsumerState<AmbulancePage> {
                                     color: ColorPage.color5,
                                   ),),
                                 ):Center(
-                                  child: Text("Hospital",style: TextStyle(
+                                  child: Text("Ambulance",style: TextStyle(
                                     fontSize: width*0.012,
                                     fontWeight: FontWeight.w600,
                                     color: ColorPage.color5,

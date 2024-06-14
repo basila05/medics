@@ -63,46 +63,48 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                           )
                         ] ,
                         borderRadius: BorderRadius.circular(width*0.01),),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: width*0.1,
-                            height: height*0.2,
-                            child: Image(image:NetworkImage( data[index].image),fit: BoxFit.fill,)
-                          ),
-                          Container(
-                            width: width*0.12,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(data[index].name.toString(),style: TextStyle(
-                                    fontSize: width*0.015,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].ml.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].rate.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].off.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].des.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                              ],
-                            ),
-                         ),
-                          Column(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => UpdatePage(detail: data[index]),));
-
-                                },
-                                  child: Icon(Icons.edit)),
+                              Container(
+                                width: width*0.1,
+                                height: height*0.2,
+                                child: Image(image:NetworkImage( data[index].image.toString()),fit: BoxFit.fill,)
+                              ),
+                              Container(
+                                width: width*0.12,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(data[index].name.toString(),style: TextStyle(
+                                        fontSize: width*0.015,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].ml.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].rate.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].off.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].des.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].qty.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
                               InkWell(
                                   onTap: () {
                                     showDialog(
@@ -187,9 +189,39 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                                         );
                                       },);
                                   },
-                                  child: Icon(Icons.delete)),
+                                  child: Container(
+                                    height: height*0.06,
+                                    width: width*0.14,
+                                    decoration: BoxDecoration(
+                                        color: ColorPage.fourthcolor,
+                                        borderRadius: BorderRadius.circular(width*0.01),
+                                        border: Border.all(color: ColorPage.thirdcolor)
+                                    ),
+                                    child: Center(child: Text("Cancel",style: TextStyle(
+                                        fontSize: width*0.013,
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorPage.primarycolor),)),
+                                  )),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => UpdatePage(detail: data[index]),));
+                                },
+                                child: Container(
+                                  height: height*0.06,
+                                  width: width*0.14,
+                                  decoration: BoxDecoration(
+                                      color: ColorPage.fourthcolor,
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                      border: Border.all(color: ColorPage.thirdcolor)
+                                  ),
+                                  child: Center(child: Text("Update",style: TextStyle(
+                                      fontSize: width*0.013,
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorPage.primarycolor),)),
+                                ),
+                              )
                             ],
-                          )
+                          ),
                         ],
                       ),
                     );

@@ -27,6 +27,7 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController rateController = TextEditingController();
   TextEditingController offController = TextEditingController();
+  TextEditingController qtyController = TextEditingController();
   TextEditingController desController = TextEditingController();
   TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
@@ -78,8 +79,9 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
         des: desController.text,
         ml: mlController.text,
         rate: double.parse(rateController.text),
+        qty: int.parse(qtyController.text.toString()),
         off: double.parse(offController.text),
-        image: medImage
+        image: medImage.toString()
 
     ));
 
@@ -92,6 +94,7 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
       nameController.text =widget.detail.name;
       mlController.text =widget.detail.ml;
       rateController.text =widget.detail.rate.toString();
+      qtyController.text =widget.detail.qty.toString();
       offController.text =widget.detail.off.toString();
       medImage=widget.detail.image;
 
@@ -440,7 +443,7 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                                 ),
                                 child: TextFormField(
                                   controller: desController,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.text,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
@@ -449,6 +452,44 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                                       child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
                                     ),
                                     labelText: "Description",
+                                    labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: ColorPage.primarycolor,
+                                        ),
+                                        borderRadius: BorderRadius.circular(width*0.01)
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorPage.primarycolor
+                                      ),
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height*0.015,),
+                              Container(
+                                height: height*0.06,
+                                width: width*0.23,
+                                decoration: BoxDecoration(
+                                  color: ColorPage.color3,
+                                  borderRadius: BorderRadius.circular(width*0.01),
+                                ),
+                                child: TextFormField(
+                                  controller: offController,
+                                  textInputAction: TextInputAction.done,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
+                                  style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
+                                  decoration: InputDecoration(
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(width*0.005),
+                                      child: Icon(Icons.currency_rupee,color: ColorPage.primarycolor,),
+                                    ),
+                                    labelText: "Off",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(

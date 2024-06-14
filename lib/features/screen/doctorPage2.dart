@@ -36,7 +36,7 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                 child: GridView.builder(
                   itemCount:data.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 2.5,
+                    childAspectRatio: 2,
                     crossAxisSpacing:width*0.03,
                     mainAxisSpacing: height*0.05,
                     crossAxisCount: 2,
@@ -61,137 +61,165 @@ class _DoctorDetailsState extends ConsumerState<DoctorDetails> {
                           )
                         ] ,
                         borderRadius: BorderRadius.circular(width*0.01),),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: width*0.1,
-                            height: height*0.2,
-                            color: Colors.white,
-                              child: Image(image:NetworkImage(data[index].image))
-                          ),
-                          Container(
-                            width: width*0.18,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(data[index].name.toString(),style: TextStyle(
-                                    fontSize: width*0.015,
-                                    fontWeight: FontWeight.w600),),
-                                Text(data[index].spcl.toString(),style: TextStyle(
-                                    // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text(data[index].exp.toString(),style: TextStyle(
-                                    // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].cons.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].admin.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                                Text("${data[index].dis.toString()}",style: TextStyle(
-                                  // color: ColorPage.sixthcolor,
-                                    fontWeight: FontWeight.w600),),
-                              ],
-                            ),
-                          ),
-                          Column(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              Container(
+                                width: width*0.1,
+                                height: height*0.2,
+                                  child: Image(image:NetworkImage(data[index].image))
+                              ),
+                              Container(
+                                width: width*0.18,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(data[index].name.toString(),style: TextStyle(
+                                        fontSize: width*0.015,
+                                        fontWeight: FontWeight.w600),),
+                                    Text(data[index].spcl.toString(),style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text(data[index].exp.toString(),style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].cons.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].admin.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                    Text("${data[index].dis.toString()}",style: TextStyle(
+                                      // color: ColorPage.sixthcolor,
+                                        fontWeight: FontWeight.w600),),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          content: Container(
+                                            height: height*0.2,
+                                            width: width*0.1,
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Container(
+                                                    child: Column(
+                                                      children: [
+                                                        Text("Are you sure You want to",
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: width*0.015,
+                                                              color: ColorPage.thirdcolor),),
+                                                        Text("Delete the Hospital?",
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: width*0.015,
+                                                              color: ColorPage.thirdcolor),),
+                                                      ],)),
+                                                Container(
+                                                  height: width*0.025,
+                                                  width: width*0.15,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          deletedData(data[index].id);
+                                                        },
+                                                        child: Container(
+                                                          height: width*0.025,
+                                                          width: width*0.07,
+                                                          decoration: BoxDecoration(
+                                                              color: ColorPage.primarycolor,
+                                                              borderRadius: BorderRadius.circular(width*0.015)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text("Yes",
+                                                              style: TextStyle(
+                                                                  fontSize: width*0.015,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: ColorPage.secondarycolor
+                                                              ),),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(context);
+                                                        },
+                                                        child: Container(
+                                                          height: width*0.025,
+                                                          width: width*0.07,
+                                                          decoration: BoxDecoration(
+                                                              color: ColorPage.primarycolor,
+                                                              borderRadius: BorderRadius.circular(width*0.015)
+                                                          ),
+                                                          child: Center(
+                                                            child: Text("No",
+                                                              style: TextStyle(
+                                                                  fontSize: width*0.015,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  color: ColorPage.secondarycolor
+                                                              ),),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },);
+                                  },
+                                  child: Container(
+                                    height: height*0.06,
+                                    width: width*0.14,
+                                    decoration: BoxDecoration(
+                                        color: ColorPage.fourthcolor,
+                                        borderRadius: BorderRadius.circular(width*0.01),
+                                        border: Border.all(color: ColorPage.thirdcolor)
+                                    ),
+                                    child: Center(child: Text("Cancel",style: TextStyle(
+                                        fontSize: width*0.013,
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorPage.primarycolor),)),
+                                  )),
                               InkWell(
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorUpdatePage(details: data[index],),));
                                 },
-                                  child: Icon(Icons.edit)),
-                              InkWell(
-                                  onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            content: Container(
-                                              height: height*0.2,
-                                              width: width*0.1,
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Container(
-                                                      child: Column(
-                                                        children: [
-                                                          Text("Are you sure You want to",
-                                                            style: TextStyle(
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: width*0.015,
-                                                                color: ColorPage.thirdcolor),),
-                                                          Text("Delete the Doctor?",
-                                                            style: TextStyle(
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: width*0.015,
-                                                                color: ColorPage.thirdcolor),),
-                                                        ],)),
-                                                  Container(
-                                                    height: width*0.025,
-                                                    width: width*0.15,
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        InkWell(
-                                                          onTap: () {
-                                                            deletedData(data[index].id);
-                                                            },
-                                                          child: Container(
-                                                            height: width*0.025,
-                                                            width: width*0.07,
-                                                            decoration: BoxDecoration(
-                                                                color: ColorPage.primarycolor,
-                                                                borderRadius: BorderRadius.circular(width*0.015)
-                                                            ),
-                                                            child: Center(
-                                                              child: Text("Yes",
-                                                                style: TextStyle(
-                                                                    fontSize: width*0.015,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    color: ColorPage.secondarycolor
-                                                                ),),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        InkWell(
-                                                          onTap: () {
-                                                            Navigator.pop(context);
-                                                          },
-                                                          child: Container(
-                                                            height: width*0.025,
-                                                            width: width*0.07,
-                                                            decoration: BoxDecoration(
-                                                                color: ColorPage.primarycolor,
-                                                                borderRadius: BorderRadius.circular(width*0.015)
-                                                            ),
-                                                            child: Center(
-                                                              child: Text("No",
-                                                                style: TextStyle(
-                                                                    fontSize: width*0.015,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    color: ColorPage.secondarycolor
-                                                                ),),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        },);
-                                  },
-                                  child: Icon(Icons.delete)),
+                                child: Container(
+                                  height: height*0.06,
+                                  width: width*0.14,
+                                  decoration: BoxDecoration(
+                                      color: ColorPage.fourthcolor,
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                      border: Border.all(color: ColorPage.thirdcolor)
+                                  ),
+                                  child: Center(child: Text("Update",style: TextStyle(
+                                      fontSize: width*0.013,
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorPage.primarycolor),)),
+                                ),
+                              )
                             ],
-
-                          )
+                          ),
                         ],
                       ),
                     );

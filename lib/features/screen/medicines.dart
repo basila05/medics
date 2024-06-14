@@ -77,7 +77,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
              ml: mlController.text,
             des: desController.text,
             rate: double.parse(rateController.text),
-            qty: int.parse(qtyController.text),
+            qty: int.parse(qtyController.text.toString()),
             off: double.parse(offController.text,),
             id:  idController.text));
   }
@@ -423,7 +423,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                 ),
                                 child: TextFormField(
                                   controller: desController,
-                                  textInputAction: TextInputAction.done,
+                                  textInputAction: TextInputAction.next,
                                   keyboardType: TextInputType.text,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
@@ -458,8 +458,11 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                                 ),
                                 child: TextFormField(
                                   controller: qtyController,
-                                  textInputAction: TextInputAction.next,
-                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
@@ -487,7 +490,7 @@ class _MedicinePageState extends ConsumerState<MedicinePage> {
                               InkWell(
                                 onTap: () {
                                   medDetails();
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineDetails(),));
+                                  // Navigator.push(context, MaterialPageRoute(builder: (context) => MedicineDetails(),));
                                 },
                                 child: Container(
                                   height: height*0.06,
