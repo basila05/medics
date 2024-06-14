@@ -38,7 +38,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                 child: GridView.builder(
                   itemCount:data.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 3,
+                    childAspectRatio: 0.8,
                     crossAxisSpacing:width*0.03,
                     mainAxisSpacing: height*0.05,
                     crossAxisCount: 2,
@@ -72,7 +72,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                               Container(
                                 width: width*0.1,
                                 height: height*0.2,
-                                child: Image(image:NetworkImage( data[index].image.toString()),fit: BoxFit.fill,)
+                                child: Image(image:NetworkImage(data[index].image.toString()),fit: BoxFit.fill,)
                               ),
                               Container(
                                 width: width*0.12,
@@ -82,7 +82,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                                     Text(data[index].name.toString(),style: TextStyle(
                                         fontSize: width*0.015,
                                         fontWeight: FontWeight.w600),),
-                                    Text("${data[index].ml.toString()}",style: TextStyle(
+                                    Text(data[index].ml.toString(),style: TextStyle(
                                       // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
                                     Text("${data[index].rate.toString()}",style: TextStyle(
@@ -91,10 +91,10 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                                     Text("${data[index].off.toString()}",style: TextStyle(
                                       // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
-                                    Text("${data[index].des.toString()}",style: TextStyle(
+                                    Text(data[index].des.toString(),style: TextStyle(
                                       // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
-                                    Text("${data[index].qty.toString()}",style: TextStyle(
+                                    Text(data[index].qty.toString(),style: TextStyle(
                                       // color: ColorPage.sixthcolor,
                                         fontWeight: FontWeight.w600),),
                                   ],
@@ -141,6 +141,7 @@ class _MedicineDetailsState extends ConsumerState<MedicineDetails> {
                                                       InkWell(
                                                         onTap: () {
                                                           deleted(data[index].id);
+                                                          Navigator.pop(context);
                                                         },
                                                         child: Container(
                                                           height: width*0.025,

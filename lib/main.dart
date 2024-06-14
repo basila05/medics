@@ -49,6 +49,10 @@ class Medics extends StatelessWidget {
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
           home:SplashScreen()
+
+
+
+
       ),);
   }
 }
