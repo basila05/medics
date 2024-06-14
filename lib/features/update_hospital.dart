@@ -11,15 +11,25 @@ import 'package:medics/features/screen/medicine2.dart';
 import 'package:medics/models/hospitalModel.dart';
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
+import '../models/doctormodel.dart';
 
-class HsptlPage extends ConsumerStatefulWidget {
-  const HsptlPage({super.key});
+// class UpdateHospital extends ConsumerStatefulWidget {
+//   final HsptlModel details;
+//   const UpdateHospital(this.details, {super.key});
+//
+//   @override
+//   ConsumerState createState() => _UpdateHospital();
+// }
+class UpdateHospital extends ConsumerStatefulWidget {
+  final HsptlModel details;
+  const UpdateHospital( {super.key,
+    required this.details});
 
   @override
-  ConsumerState createState() => Update_Hospital();
+  ConsumerState createState() => _UpdateHospitalState();
 }
 
-class Update_Hospital extends ConsumerState<HsptlPage> {
+class _UpdateHospitalState extends ConsumerState<UpdateHospital> {
   TextEditingController nameController = TextEditingController();
   TextEditingController idController = TextEditingController();
   final formKey=GlobalKey<FormState>();
@@ -79,8 +89,14 @@ class Update_Hospital extends ConsumerState<HsptlPage> {
         image: hsptlImage
     ));
   }
-
   @override
+  void initState() {
+    nameController.text=widget.details.name;
+    hsptlImage=widget.details.image;
+
+    // TODO: implement initState
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -302,7 +318,9 @@ class Update_Hospital extends ConsumerState<HsptlPage> {
                               ),
                               SizedBox(height: height*0.05,),
                               InkWell(
-                                onTap: () {
+                                onTap: () async {
+                                await  updateddata(widget.details);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => HsptlDetails(),));
 
                                 },
                                 child: Container(
@@ -315,7 +333,7 @@ class Update_Hospital extends ConsumerState<HsptlPage> {
                                     borderRadius: BorderRadius.circular(width*0.01),
                                   ),
                                   child: Center(
-                                    child: Text("Add",style: TextStyle(
+                                    child: Text("Update",style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         color: ColorPage.secondarycolor,
                                         fontSize: width*0.012

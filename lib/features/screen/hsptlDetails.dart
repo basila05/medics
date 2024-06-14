@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/controllers/user_controller.dart';
+import 'package:medics/features/screen/update_doctor.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
+import '../update_hospital.dart';
 
 class HsptlDetails extends ConsumerStatefulWidget {
   const HsptlDetails({super.key});
@@ -181,18 +183,23 @@ class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
                                         fontWeight: FontWeight.w600,
                                         color: ColorPage.primarycolor),)),
                                   )),
-                              Container(
-                                height: height*0.06,
-                                width: width*0.14,
-                                decoration: BoxDecoration(
-                                    color: ColorPage.fourthcolor,
-                                    borderRadius: BorderRadius.circular(width*0.01),
-                                    border: Border.all(color: ColorPage.thirdcolor)
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateHospital(details: data[index]),));
+                                },
+                                child: Container(
+                                  height: height*0.06,
+                                  width: width*0.14,
+                                  decoration: BoxDecoration(
+                                      color: ColorPage.fourthcolor,
+                                      borderRadius: BorderRadius.circular(width*0.01),
+                                      border: Border.all(color: ColorPage.thirdcolor)
+                                  ),
+                                  child: Center(child: Text("Update",style: TextStyle(
+                                      fontSize: width*0.013,
+                                      fontWeight: FontWeight.w600,
+                                      color: ColorPage.primarycolor),)),
                                 ),
-                                child: Center(child: Text("Update",style: TextStyle(
-                                    fontSize: width*0.013,
-                                    fontWeight: FontWeight.w600,
-                                    color: ColorPage.primarycolor),)),
                               )
                             ],
                           ),
