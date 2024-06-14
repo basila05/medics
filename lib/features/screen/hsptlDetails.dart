@@ -82,7 +82,7 @@ class _HsptlDetailsState extends ConsumerState<HsptlDetails> {
                               Icon(Icons.edit),
                               InkWell(
                                   onTap: () {
-                                    FirebaseFirestore.instance.collection("hospital").doc(data[index].id).delete();
+                                    FirebaseFirestore.instance.collection("ambulance").doc(data[index].id).delete();
                                   },
                                   child: Icon(Icons.delete)),
                             ],
