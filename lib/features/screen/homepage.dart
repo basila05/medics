@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradients/gradients.dart';
+import 'package:medics/features/screen/ambulancePage.dart';
 import 'package:medics/features/screen/banners.dart';
 import 'package:medics/core/constants/colorpage.dart';
 import 'package:medics/features/screen/doctors.dart';
@@ -211,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       InkWell(
                                         onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => HsptlPage(),));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => AmbulancePage(),));
                                         },
                                         child: Container(
                                           height: height*0.07,
