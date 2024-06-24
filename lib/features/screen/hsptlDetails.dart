@@ -7,7 +7,7 @@ import 'package:medics/features/screen/update_doctor.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
-import '../update_hospital.dart';
+import 'update_hospital.dart';
 
 class HsptlDetails extends ConsumerStatefulWidget {
   const HsptlDetails({super.key});

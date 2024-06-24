@@ -9,9 +9,9 @@ import 'package:medics/features/controllers/user_controller.dart';
 import 'package:medics/features/screen/hsptlDetails.dart';
 import 'package:medics/features/screen/medicine2.dart';
 import 'package:medics/models/hospitalModel.dart';
-import '../../core/constants/colorpage.dart';
-import '../../main.dart';
-import '../models/doctormodel.dart';
+import '../../../core/constants/colorpage.dart';
+import '../../../main.dart';
+import '../../models/doctormodel.dart';
 
 // class UpdateHospital extends ConsumerStatefulWidget {
 //   final HsptlModel details;
