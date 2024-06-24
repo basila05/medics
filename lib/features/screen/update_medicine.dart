@@ -376,7 +376,7 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
                                       padding: EdgeInsets.all(width*0.005),
-                                      child: Icon(Icons.currency_rupee,color: ColorPage.primarycolor,),
+                                      child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
                                     ),
                                     labelText: "Rate",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
@@ -414,7 +414,7 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                                   decoration: InputDecoration(
                                     prefixIcon: Padding(
                                       padding: EdgeInsets.all(width*0.005),
-                                      child: Icon(Icons.currency_rupee,color: ColorPage.primarycolor,),
+                                      child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
                                     ),
                                     labelText: "Off",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
@@ -447,10 +447,6 @@ class _MedicinePageState extends ConsumerState<UpdatePage> {
                                   keyboardType: TextInputType.text,
                                   style: TextStyle(fontSize: width*0.012,fontWeight: FontWeight.w500,color: ColorPage.thirdcolor),
                                   decoration: InputDecoration(
-                                    prefixIcon: Padding(
-                                      padding: EdgeInsets.all(width*0.005),
-                                      child: Icon(CupertinoIcons.money_dollar_circle_fill,color: ColorPage.primarycolor,),
-                                    ),
                                     labelText: "Description",
                                     labelStyle: TextStyle(fontWeight: FontWeight.w500,fontSize: width*0.012, color: ColorPage.color1),
                                     focusedBorder: OutlineInputBorder(
