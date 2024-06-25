@@ -125,27 +125,27 @@ class AmbulanceRepository {
 
   AmbulanceRepository({required FirebaseFirestore firestore})
       :_firestore=firestore;
-  CollectionReference get ambulance => _firestore.collection("ambulance");
+  CollectionReference get _ambulance => _firestore.collection("ambulance");
 
   add(AmbulanceModel ambulanceData) {
-    ambulance.add(ambulanceData.toMap()).then((value) {
+    _ambulance.add(ambulanceData.toMap()).then((value) {
       value.update(ambulanceData.copyWith(id: value.id).toMap());
     },);
   }
 
   deleteAmbulance(AmbulanceModel ambulanceDelete) {
-    ambulance.doc(ambulanceDelete.id).delete();
+    _ambulance.doc(ambulanceDelete.id).delete();
   }
 
   streamAmbulance() {
-    return ambulance.snapshots().map((event) =>
+    return _ambulance.snapshots().map((event) =>
         event.docs.map((e) =>
             AmbulanceModel.fromMap(e.data() as Map<String, dynamic>)).toList());
   }
 
   UpdateAmbulance(AmbulanceModel ambulanceedit) {
-    print(ambulance.doc(ambulanceedit.id));
-    ambulance.doc(ambulanceedit.id).update(ambulanceedit.toMap()).then((value) {},);
+    print(_ambulance.doc(ambulanceedit.id));
+    _ambulance.doc(ambulanceedit.id).update(ambulanceedit.toMap()).then((value) {},);
   }
 
 }
