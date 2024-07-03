@@ -407,7 +407,23 @@ class _LoginPageState extends State<LoginPage> {
                                    SizedBox(height: height*0.05,),
                                    InkWell(
                                      onTap: () {
-                                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                                       if(
+                                       nameController.text!=""&&
+                                           emailController.text!=""&&
+                                           passwordController.text!=""&&
+                                           formKey.currentState!.validate()
+                                       )
+                                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                                       else{
+                                         nameController.text==""?
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Name!"))):
+                                         emailController.text==""?
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Email!"))):
+                                         passwordController.text==""?
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Password!"))):
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Valid Details!")));
+
+                                       }
                                      },
                                      child: Container(
                                        height: height*0.07,
@@ -524,7 +540,20 @@ class _LoginPageState extends State<LoginPage> {
                                    SizedBox(height: height*0.13,),
                                    InkWell(
                                      onTap: () {
-                                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                                       if(
+                                           emailController.text!=""&&
+                                           passwordController.text!=""&&
+                                           formKey.currentState!.validate()
+                                       )
+                                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                                       else{
+                                         emailController.text==""?
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Email!"))):
+                                         passwordController.text==""?
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Password!"))):
+                                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: ColorPage.primarycolor,content: Text("Please enter your Valid Details!")));
+
+                                       }
                                      },
                                      child: Container(
                                        height: height*0.07,

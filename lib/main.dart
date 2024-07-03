@@ -48,7 +48,7 @@ class Medics extends StatelessWidget {
           theme: ThemeData(
               textTheme: GoogleFonts.muktaVaaniTextTheme()
           ),
-          home:SplashScreen()
+          home:HomePage()
 
 
 

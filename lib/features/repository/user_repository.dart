@@ -147,5 +147,4 @@ class AmbulanceRepository {
     print(_ambulance.doc(ambulanceedit.id));
     _ambulance.doc(ambulanceedit.id).update(ambulanceedit.toMap()).then((value) {},);
   }
-
 }

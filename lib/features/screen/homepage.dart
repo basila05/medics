@@ -8,6 +8,7 @@ import 'package:medics/core/constants/colorpage.dart';
 import 'package:medics/features/screen/doctors.dart';
 import 'package:medics/features/screen/hsptlPage.dart';
 import 'package:medics/features/screen/medicines.dart';
+import 'package:medics/features/screen/seetingsPage.dart';
 import 'package:medics/features/screen/userPage.dart';
 import 'package:side_navigation/side_navigation.dart';
 
@@ -102,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius: BorderRadius.circular(width*0.014)
                                   ),
                                   child: toggle?Center(
-                                    child: Text("Orders",style: TextStyle(
+                                    child: Text("Categories",style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                         color: ColorPage.secondarycolor,
                                         fontSize: width*0.012
@@ -129,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                                     color: ColorPage.color5,
                                   ),),
                                 ):Center(
-                                  child: Text("Orders",style: TextStyle(
+                                  child: Text("Categories",style: TextStyle(
                                     fontSize: width*0.012,
                                     fontWeight: FontWeight.w600,
                                     color: ColorPage.color5,
@@ -234,28 +235,98 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
-                                ):InkWell(
-                                   onTap: (){
-                                     Navigator.push(context, MaterialPageRoute(builder: (context) => UsersPage(),));
-                                     },
-                                     child: Container(
-                              height: height*0.07,
-                              width: width*0.2,
-                              decoration: BoxDecoration(
-                                  color: ColorPage.color3,
-                                  border: Border.all(
-                                      color: ColorPage.color1,
-                                      width: width*0.001
+                                ):Container(
+                                  height: height*0.4,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                         onTap: (){
+                                           Navigator.push(context, MaterialPageRoute(builder: (context) => UsersPage(),));
+                                           },
+                                           child: Container(
+                                             height: height*0.07,
+                                             width: width*0.2,
+                                             decoration: BoxDecoration(
+                                        color: ColorPage.color3,
+                                        border: Border.all(
+                                            color: ColorPage.color1,
+                                            width: width*0.001
+                                        ),
+                                        borderRadius: BorderRadius.circular(width*0.014)),
+                                             child: Center(child: Text("User Details",style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: ColorPage.color5,
+                                        fontSize: width*0.012
+                                             ),)),
+                                           ),
+                                      ),
+                                      InkWell(
+                                        onTap: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage(),));
+                                        },
+                                        child: Container(
+                                          height: height*0.07,
+                                          width: width*0.2,
+                                          decoration: BoxDecoration(
+                                              color: ColorPage.color3,
+                                              border: Border.all(
+                                                  color: ColorPage.color1,
+                                                  width: width*0.001
+                                              ),
+                                              borderRadius: BorderRadius.circular(width*0.014)),
+                                          child: Center(child: Text("Settings",style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: ColorPage.color5,
+                                              fontSize: width*0.012
+                                          ),)),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: (){
+
+                                          },
+                                        child: Container(
+                                          height: height*0.07,
+                                          width: width*0.2,
+                                          decoration: BoxDecoration(
+                                              color: ColorPage.color3,
+                                              border: Border.all(
+                                                  color: ColorPage.color1,
+                                                  width: width*0.001
+                                              ),
+                                              borderRadius: BorderRadius.circular(width*0.014)),
+                                          child: Center(child: Text("Bookings",style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: ColorPage.color5,
+                                              fontSize: width*0.012
+                                          ),)),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: (){
+                                           },
+                                        child: Container(
+                                          height: height*0.07,
+                                          width: width*0.2,
+                                          decoration: BoxDecoration(
+                                              color: ColorPage.color3,
+                                              border: Border.all(
+                                                  color: ColorPage.color1,
+                                                  width: width*0.001
+                                              ),
+                                              borderRadius: BorderRadius.circular(width*0.014)),
+                                          child: Center(child: Text("Orders",style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: ColorPage.color5,
+                                              fontSize: width*0.012
+                                          ),)),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  borderRadius: BorderRadius.circular(width*0.014)
-                              ),
-                              child: Center(child: Text("User Details",style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: ColorPage.color5,
-                                  fontSize: width*0.012
-                              ),)),
-                            ),
-                          ),
+                                ),
                         ],
                       ),
                     )
