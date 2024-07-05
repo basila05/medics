@@ -34,132 +34,159 @@ class _HelpAndSupportState extends ConsumerState<HelpAndSupport> {
     final isSmallScreen = MediaQuery.of(context).size.width < 600;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.name),
+        title: Text(widget.name,style: TextStyle(
+          fontSize: width*0.015,
+          fontWeight: FontWeight.w600,
+          color: ColorPage.primarycolor
+        ),),
       ),
-      body:Padding(
-        padding: EdgeInsets.all(height*0.01),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              width: isSmallScreen?width*0.8:width*0.4,
-              height: height*0.8,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: isSmallScreen?width*0.8:350,
-                      child: TextFormField(
-                        controller: TextController,
-                        maxLines: 3,
-                        keyboardType: TextInputType.multiline,
-                        textCapitalization: TextCapitalization.words,
-                        textInputAction: TextInputAction.done,
-                        cursorColor: ColorPage.thirdcolor,
-                        onFieldSubmitted: (value) {
+      body:SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(height*0.01),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                width: isSmallScreen?width*0.8:width*0.7,
+                height: height*0.8,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: isSmallScreen?width*0.8:350,
+                        child: TextFormField(
+                          controller: TextController,
+                          maxLines: 3,
+                          keyboardType: TextInputType.multiline,
+                          textCapitalization: TextCapitalization.words,
+                          textInputAction: TextInputAction.done,
+                          cursorColor: ColorPage.primarycolor,
+                          onFieldSubmitted: (value) {
+                            if(TextController.text.isNotEmpty){
+                              settingsData();
+                            } else{
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Text")));
+                            }
+                          },
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              labelText:"Enter ${widget.name}",
+                              labelStyle: TextStyle(
+                                  color: ColorPage.color5,
+                                  fontSize: isSmallScreen?12:17
+                                // isSmallScreen?12:15
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: ColorPage.primarycolor,),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(width * 0.03),
+                                  borderSide:
+                                  BorderSide(color: ColorPage.primarycolor,)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(width * 0.03),
+                                  borderSide:
+                                  BorderSide(color: ColorPage.primarycolor,))),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      InkWell(
+                        onTap: (){
                           if(TextController.text.isNotEmpty){
                             settingsData();
                           } else{
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Text")));
                           }
                         },
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(10),
-                            labelText:"Enter ${widget.name}",
-                            labelStyle: TextStyle(
-                                color: ColorPage.thirdcolor,
-                                fontSize: isSmallScreen?10:15
-                              // isSmallScreen?12:15
+                        child: Container(
+                            height: height * 0.07,
+                            width: width * 0.2,
+                            decoration: BoxDecoration(
+                              color: ColorPage.fourthcolor,
+                              borderRadius:
+                              BorderRadius.circular(width * 0.015),
                             ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: ColorPage.thirdcolor,),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.circular(width * 0.03),
-                                borderSide:
-                                BorderSide(color: ColorPage.thirdcolor,)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.circular(width * 0.03),
-                                borderSide:
-                                BorderSide(color: ColorPage.thirdcolor,))),
+                            child: Center(
+                                child: Text("Submit",
+                                    style: TextStyle(
+                                        color: ColorPage.primarycolor,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: width * 0.013)))),
                       ),
-                    ),
-                    SizedBox(height: 20,),
-                    InkWell(
-                      onTap: (){
-                        if(TextController.text.isNotEmpty){
-                          settingsData();
-                        } else{
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please enter Text")));
-                        }
-                      },
-                      child: Container(
-                          height: height * 0.05,
-                          width: height * 0.1,
-                          decoration: BoxDecoration(
-                            color: ColorPage.thirdcolor,
-                            borderRadius:
-                            BorderRadius.circular(height * 0.07),
-                          ),
-                          child: Center(
-                              child: Text("Submit",
-                                  style: TextStyle(
-                                      color: ColorPage.primarycolor,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: height * 0.02)))),
-                    ),
-                    SizedBox(height: 20,),
-                    if(isSmallScreen)
-                      StreamBuilder<QuerySnapshot<Map<String,dynamic>>>(
-                          stream: FirebaseFirestore.instance.collection('settings')
-                              .doc(widget.name).collection(widget.name).snapshots(),
-                          builder: (context, snapshot) {
-                            if(!snapshot.hasData){
-                              return CircularProgressIndicator();
+                      SizedBox(height: 20,),
+                      if(isSmallScreen)
+                        StreamBuilder<QuerySnapshot<Map<String,dynamic>>>(
+                            stream: FirebaseFirestore.instance.collection('settings')
+                                .doc(widget.name).collection(widget.name).snapshots(),
+                            builder: (context, snapshot) {
+                              if(!snapshot.hasData){
+                                return CircularProgressIndicator();
+                              }
+                              var data = snapshot.data!.docs;
+                              return data.isEmpty?
+                              Center(child: Text("No ${widget.name}"),)
+                                  :Center(
+                                child: Center(child: Text(data[0]['Text'])),
+                              );
                             }
-                            var data = snapshot.data!.docs;
-                            return data.isEmpty?
-                            Center(child: Text("No ${widget.name}"),)
-                                :Center(
-                              child: Center(child: Text(data[0]['Text'])),
-                            );
-                          }
+                        ),
+                      Column(
+                        children: [
+                          isSmallScreen?SizedBox():
+                          StreamBuilder<QuerySnapshot<Map<String,dynamic>>>(
+                              stream: FirebaseFirestore.instance.collection('settings')
+                                  .doc(widget.name).collection(widget.name).snapshots(),
+                              builder: (context, snapshot) {
+                                if(!snapshot.hasData){
+                                  return CircularProgressIndicator();
+                                }
+                                var data = snapshot.data!.docs;
+                                return data.isEmpty?
+                                Center(child: Text("No ${widget.name}"),)
+                                    :SizedBox(
+                                  height: height*1,
+                                  width: width*0.3,
+                                  child: Center(child: Text(data[0]['Text'],textAlign: TextAlign.center,)),
+                                );
+                              }
+                          ),
+
+                        ],
                       ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            //if(!isSmallScreen)
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  isSmallScreen?SizedBox():
-                  StreamBuilder<QuerySnapshot<Map<String,dynamic>>>(
-                      stream: FirebaseFirestore.instance.collection('settings')
-                          .doc(widget.name).collection(widget.name).snapshots(),
-                      builder: (context, snapshot) {
-                        if(!snapshot.hasData){
-                          return CircularProgressIndicator();
-                        }
-                        var data = snapshot.data!.docs;
-                        return data.isEmpty?
-                        Center(child: Text("No ${widget.name}"),)
-                            :SizedBox(
-                          height: height*1,
-                          width: width*0.3,
-                          child: Center(child: Text(data[0]['Text'],textAlign: TextAlign.center,)),
-                        );
-                      }
-                  ),
-
-                ],
-              ),
-            ),
-
-          ],
+              //if(!isSmallScreen)
+              // Column(
+              //   children: [
+              //     isSmallScreen?SizedBox():
+              //     StreamBuilder<QuerySnapshot<Map<String,dynamic>>>(
+              //         stream: FirebaseFirestore.instance.collection('settings')
+              //             .doc(widget.name).collection(widget.name).snapshots(),
+              //         builder: (context, snapshot) {
+              //           if(!snapshot.hasData){
+              //             return CircularProgressIndicator();
+              //           }
+              //           var data = snapshot.data!.docs;
+              //           return data.isEmpty?
+              //           Center(child: Text("No ${widget.name}"),)
+              //               :SizedBox(
+              //             height: height*1,
+              //             width: width*0.3,
+              //             child: Center(child: Text(data[0]['Text'],textAlign: TextAlign.center,)),
+              //           );
+              //         }
+              //     ),
+              //
+              //   ],
+              // ),
+        
+            ],
+          ),
         ),
       ),
     );

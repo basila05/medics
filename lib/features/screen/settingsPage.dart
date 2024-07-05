@@ -299,7 +299,7 @@ class _settingsPageState extends State<settingsPage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height*0.2,),
+                              SizedBox(height: height*0.37,),
                               InkWell(
                                 onTap: (){
                                   if(settingsController.text.isNotEmpty){
@@ -326,7 +326,6 @@ class _settingsPageState extends State<settingsPage> {
                                   ),
                               ),
                               ),
-                              SizedBox(height:height*0.05,),
                             ],
                           ),
                         ],
