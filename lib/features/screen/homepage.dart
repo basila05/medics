@@ -5,6 +5,7 @@ import 'package:gradients/gradients.dart';
 import 'package:medics/features/screen/ambulancePage.dart';
 import 'package:medics/features/screen/banners.dart';
 import 'package:medics/core/constants/colorpage.dart';
+import 'package:medics/features/screen/bookingPage.dart';
 import 'package:medics/features/screen/doctors.dart';
 import 'package:medics/features/screen/hsptlPage.dart';
 import 'package:medics/features/screen/medicines.dart';
@@ -262,47 +263,7 @@ class _HomePageState extends State<HomePage> {
                                              ),)),
                                            ),
                                       ),
-                                      InkWell(
-                                        onTap: (){
 
-                                          },
-                                        child: Container(
-                                          height: height*0.07,
-                                          width: width*0.2,
-                                          decoration: BoxDecoration(
-                                              color: ColorPage.color3,
-                                              border: Border.all(
-                                                  color: ColorPage.color1,
-                                                  width: width*0.001
-                                              ),
-                                              borderRadius: BorderRadius.circular(width*0.014)),
-                                          child: Center(child: Text("Bookings",style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: ColorPage.color5,
-                                              fontSize: width*0.012
-                                          ),)),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: (){
-                                           },
-                                        child: Container(
-                                          height: height*0.07,
-                                          width: width*0.2,
-                                          decoration: BoxDecoration(
-                                              color: ColorPage.color3,
-                                              border: Border.all(
-                                                  color: ColorPage.color1,
-                                                  width: width*0.001
-                                              ),
-                                              borderRadius: BorderRadius.circular(width*0.014)),
-                                          child: Center(child: Text("Orders",style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: ColorPage.color5,
-                                              fontSize: width*0.012
-                                          ),)),
-                                        ),
-                                      ),
                                       InkWell(
                                         onTap: (){
                                           Navigator.push(context, MaterialPageRoute(builder: (context) => settingsPage(),));

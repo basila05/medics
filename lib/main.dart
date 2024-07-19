@@ -13,6 +13,7 @@ import 'package:medics/features/screen/settingsPage.dart';
 import 'package:medics/features/screen/userPage.dart';
 // import 'package:medics/doctors.dart';
 import 'package:medics/firebase_options.dart';
+import 'package:medics/models/usersmodel1.dart';
 // import 'package:medics/login.dart';
 // import 'package:medics/medicines.dart';
 // import 'package:medics/splashcreen.dart';
@@ -21,6 +22,7 @@ import 'features/screen/homepage.dart';
 import 'features/screen/splashcreen.dart';
 import 'features/screen/update_medicine.dart';
 // import 'homepage.dart';
+UsersModel? currentModel;
 
 var height;
 var width;

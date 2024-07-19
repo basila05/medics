@@ -8,6 +8,7 @@ import 'package:gradients/gradients.dart';
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 import '../controllers/user_controller.dart';
+import 'bookingPage.dart';
 
 class UsersPage extends ConsumerStatefulWidget {
   const UsersPage({super.key});
@@ -234,18 +235,24 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                                             fontWeight: FontWeight.w600,
                                         color: ColorPage.primarycolor),)),
                                       )),
-                                  Container(
-                                    height: height*0.06,
-                                    width: width*0.14,
-                                    decoration: BoxDecoration(
-                                        color: ColorPage.fourthcolor,
-                                        borderRadius: BorderRadius.circular(width*0.01),
-                                        border: Border.all(color: ColorPage.thirdcolor)
+                                  InkWell(onTap: () {
+
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage(details: data[index].email.toString(),),));
+
+                                  },
+                                    child: Container(
+                                      height: height*0.06,
+                                      width: width*0.14,
+                                      decoration: BoxDecoration(
+                                          color: ColorPage.fourthcolor,
+                                          borderRadius: BorderRadius.circular(width*0.01),
+                                          border: Border.all(color: ColorPage.thirdcolor)
+                                      ),
+                                      child: Center(child: Text("View",style: TextStyle(
+                                          fontSize: width*0.013,
+                                          fontWeight: FontWeight.w600,
+                                          color: ColorPage.primarycolor),)),
                                     ),
-                                    child: Center(child: Text("View",style: TextStyle(
-                                        fontSize: width*0.013,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorPage.primarycolor),)),
                                   )
                                 ],
                               ),

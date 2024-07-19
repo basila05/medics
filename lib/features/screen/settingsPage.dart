@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gradients/gradients.dart';
 import 'package:medics/features/screen/splashcreen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
 import 'help&support.dart';
