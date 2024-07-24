@@ -237,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                 ):Container(
-                                  height: height*0.4,
+                                  height: height*0.18,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

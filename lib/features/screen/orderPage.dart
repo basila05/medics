@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class OrderPage extends ConsumerStatefulWidget {
-  const OrderPage({super.key});
+  final String details;
+  const OrderPage({super.key, required this.details});
 
   @override
   ConsumerState createState() => _OrderPageState();

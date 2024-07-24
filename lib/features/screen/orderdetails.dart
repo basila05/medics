@@ -165,7 +165,7 @@ class _OrderDetailsState extends ConsumerState<OrderDetails> {
                               children: [
                                 InkWell(
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(),));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(details: '',),));
                                   },
                                   child: Container(
                                     height: height*0.08,
@@ -187,7 +187,7 @@ class _OrderDetailsState extends ConsumerState<OrderDetails> {
                                 ),
                                 InkWell(
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage(),));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage(details: '',),));
                                   },
                                   child: Container(
                                     height: height*0.08,

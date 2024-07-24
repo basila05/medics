@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gradients/gradients.dart';
+import 'package:medics/features/screen/orderPage.dart';
 
 import '../../core/constants/colorpage.dart';
 import '../../main.dart';
@@ -224,7 +225,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                                       },
                                       child: Container(
                                         height: height*0.06,
-                                        width: width*0.14,
+                                        width: width*0.09,
                                         decoration: BoxDecoration(
                                           color: ColorPage.fourthcolor,
                                           borderRadius: BorderRadius.circular(width*0.01),
@@ -236,19 +237,34 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                                         color: ColorPage.primarycolor),)),
                                       )),
                                   InkWell(onTap: () {
-
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage(details: data[index].email.toString(),),));
-
                                   },
                                     child: Container(
                                       height: height*0.06,
-                                      width: width*0.14,
+                                      width: width*0.09,
                                       decoration: BoxDecoration(
                                           color: ColorPage.fourthcolor,
                                           borderRadius: BorderRadius.circular(width*0.01),
                                           border: Border.all(color: ColorPage.thirdcolor)
                                       ),
-                                      child: Center(child: Text("View",style: TextStyle(
+                                      child: Center(child: Text("Bookings",style: TextStyle(
+                                          fontSize: width*0.013,
+                                          fontWeight: FontWeight.w600,
+                                          color: ColorPage.primarycolor),)),
+                                    ),
+                                  ),
+                                  InkWell(onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(details: data[index].email.toString(),),));
+                                  },
+                                    child: Container(
+                                      height: height*0.06,
+                                      width: width*0.09,
+                                      decoration: BoxDecoration(
+                                          color: ColorPage.fourthcolor,
+                                          borderRadius: BorderRadius.circular(width*0.01),
+                                          border: Border.all(color: ColorPage.thirdcolor)
+                                      ),
+                                      child: Center(child: Text("Orders",style: TextStyle(
                                           fontSize: width*0.013,
                                           fontWeight: FontWeight.w600,
                                           color: ColorPage.primarycolor),)),
@@ -260,7 +276,6 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                           ),
                         ),
                       );
-
                   },
                 ),
               ),
