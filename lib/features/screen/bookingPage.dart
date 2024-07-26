@@ -30,8 +30,8 @@ class _BookingPageState extends ConsumerState<BookingPage> { TextEditingControll
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: width*0.8,
-                height: height*1,
+                width: width*1,
+                height: height*0.8,
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance.collection("schedule").where("userId", isEqualTo: widget.details,).snapshots(),
                     builder: (context, snapshot) {
@@ -42,28 +42,17 @@ class _BookingPageState extends ConsumerState<BookingPage> { TextEditingControll
                       return data.length==0?
                       Center(child: Text("No document found")) :
 
-                      GridView.builder(
+                      ListView.separated(
                         itemCount:data.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 3,
-                          crossAxisSpacing:width*0.03,
-                          mainAxisSpacing: height*0.05,
-                          crossAxisCount: 2,
-                        ),
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
+                        scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return Container(
-                            width: width*0.4,
-                            height: height*0.03,
+                            width: width*0.25,
+                            height: height*1,
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: ColorPage.thirdcolor
-                              ),
-                              gradient: LinearGradientPainter(
-                                colors: <Color>[ColorPage.primarycolor, ColorPage.fifthcolor],
-                              ),
+                              color: ColorPage.fourthcolor,
                               boxShadow:[
                                 BoxShadow(
                                   color: ColorPage.thirdcolor.withOpacity(0.10),
@@ -78,19 +67,61 @@ class _BookingPageState extends ConsumerState<BookingPage> { TextEditingControll
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Container(
-                                    height: height*0.15,
-                                    child:  Text("Name:   ${data[index]["name"].toString()}",
-                                        style: TextStyle(
-                                            fontSize: width*0.015,
-                                            fontWeight: FontWeight.w700)),
+                                  CircleAvatar(
+                                    radius: width*0.06,
+                                    backgroundImage: NetworkImage(data[index]["image"]),
                                   ),
+
+                                  Text("Name:   ${data[index]["name"].toString()}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
+                                  Text("Specialisation:   ${data[index]["spcl"].toString()}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
+
+                                  Divider(thickness: width*0.0005,
+                                    color: ColorPage.primarycolor,
+                                    indent: width*0.03,
+                                    endIndent: width*0.03,
+                                  ),
+                                  Text("Date:   ${data[index]["date"].toString().substring(0,10)}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
+                                  Text("Time:   ${data[index]["time"].toString()}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
+                                  Divider(thickness: width*0.0005,
+                                    color: ColorPage.primarycolor,
+                                    indent: width*0.03,
+                                    endIndent: width*0.03,
+                                  ),
+
+
+                                  Text("Experience:   ${data[index]["exp"].toString()}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
+
+                                  Text("ID:   ${data[index]["id"].toString()}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
+                                  Text("Fees:  \$ ${data[index]["cons"].toString()}",
+                                      style: TextStyle(
+                                          fontSize: width*0.015,
+                                          fontWeight: FontWeight.w500)),
                                 ],
                               ),
                             ),
                           );
 
-                        },
+                        }, separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox( width: width*0.01,);
+                      },
                       );
 
                     }
