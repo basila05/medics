@@ -17,7 +17,7 @@ class BookingPage extends ConsumerStatefulWidget {
   ConsumerState createState() => _BookingPageState();
 }
 
-class _BookingPageState extends ConsumerState<BookingPage> { TextEditingController searchController = TextEditingController();
+class _BookingPageState extends ConsumerState<BookingPage> {
 
 @override
   Widget build(BuildContext context) {
